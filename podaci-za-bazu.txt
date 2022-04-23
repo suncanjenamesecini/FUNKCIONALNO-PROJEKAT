@@ -1,0 +1,1663 @@
+type alias Book =      
+{   title : String
+    , thumbnail : Maybe String
+    , link : String
+    , pages : Maybe Int
+    , publisher : Maybe String
+}
+LINK ZA KOD PRIMJERA ZA SERVER U HASKELU:
+https://github.com/MondayMorningHaskell/RealWorldHaskell
+
+OBJASNJENJE:
+https://mmhaskell.com/real-world
+
+A ZA ELM TODO APLIKACIJU:
+https://mmhaskell.com/elm
+
+KOMANDA ZA POKRETANJE BROWSERA IZ KOMANDNE LINIJE, DA SE NE JAVLJA CORS GRESKA:
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security
+
+KOMANDA ZA INKOGNITO PRETRAGU:
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --incognito
+
+ZA POKRETANJE KLIJENTA  - potrebno je prvo imati instaliran Node.js, elm, elm-live i jos neke pakete u elmu
+npx elm-live src/Main.elm
+
+PODACI NA OSNOVU KOJIH JE PRAVLJENA BAZA SLANJEM POST ZAHTJEVA SERVERU, SA KLIJENTSKE APLIKACIJE POSTMAN (ZA TESTIRANJE SERVERA I API-JA)
+Umetnuto:
+---------------------------------------
+{"title":"Web Applications with Elm",
+"thumbnail":"http://books.google.com/books/content?id=KnhqDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":140,
+"link":"https://books.google.com/books/about/Web_Applications_with_Elm.html?hl=&id=KnhqDwAAQBAJ",
+"publisher":"Apress",
+"languageId":1
+}
+-----------------------------------
+
+{"title":"Elm in Action",
+"thumbnail":"http://books.google.com/books/content?id=rHbgDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":344,
+"link":"https://books.google.com/books/about/Elm_in_Action.html?hl=&id=rHbgDwAAQBAJ",
+"publisher":"Manning Publications",
+"languageId":1
+}
+---------------------------------------
+{"title":"Design Concepts in Programming Languages",
+"thumbnail":"http://books.google.com/books/content?id=xpT6AQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":1322,
+"link":"https://books.google.com/books/about/Design_Concepts_in_Programming_Languages.html?hl=&id=xpT6AQAAQBAJ",
+"publisher":"MIT Press",
+"languageId":1
+}
+----------------------------------------
+{"title":"ELM Web Development",
+"thumbnail":"http://books.google.com/books/content?id=ZY0QtAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":288,
+"link":"https://books.google.com/books/about/ELM_Web_Development.html?hl=&id=ZY0QtAEACAAJ",
+"publisher":"Packt Publishing",
+"languageId":1
+}
+--------------------------------------------
+{"title":"Programming Elm",
+"thumbnail":"http://books.google.com/books/content?id=R-2oDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":310,
+"link":"https://books.google.com/books/about/Programming_Elm.html?hl=&id=R-2oDwAAQBAJ",
+"publisher":"Pragmatic Bookshelf",
+"languageId":1
+}
+-------------------------------------------
+{"title":"Programming in Haskell",
+"thumbnail":"http://books.google.com/books/content?id=75C5DAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":320,
+"link":"https://books.google.com/books/about/Programming_in_Haskell.html?hl=&id=75C5DAAAQBAJ",
+"publisher":"Cambridge University Press",
+"languageId":2
+}
+-----------------------------------------------
+{"title":"Haskell in Depth",
+"thumbnail":"http://books.google.com/books/content?id=r4UxEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":664,
+"link":"https://books.google.com/books/about/Haskell_in_Depth.html?hl=&id=r4UxEAAAQBAJ",
+"publisher":"Simon and Schuster",
+"languageId":2
+}
+-----------------------------------------------
+{"title":"Get Programming with Haskell",       
+"thumbnail":"http://books.google.com/books/content?id=uzT4vQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":616,
+"link":"https://books.google.com/books/about/Get_Programming_with_Haskell.html?hl=&id=uzT4vQAACAAJ",                
+"publisher":"Manning",
+"languageId":2
+}
+-----------------------------------------------
+{"title":"Haskell",
+"thumbnail":"http://books.google.com/books/content?id=a39QAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":487,
+"link":"https://books.google.com/books/about/Haskell.html?hl=&id=a39QAAAAMAAJ",
+"publisher":"Addison-Wesley",
+"languageId":2
+}
+----------------------------------------------------
+{"title":"The Haskell School of Expression",
+"thumbnail":"http://books.google.com/books/content?id=lQbth9j5j9oC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":363,
+"link":"https://books.google.com/books/about/The_Haskell_School_of_Expression.html?hl=&id=lQbth9j5j9oC",  
+"publisher":"Cambridge University Press",
+"languageId":2
+}
+
+---------------------------------------------------
+{"title":"Practical Haskell",
+"thumbnail":"http://books.google.com/books/content?id=7-4jwQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",  
+"pages":595,
+"link":"https://books.google.com/books/about/Practical_Haskell.html?hl=&id=7-4jwQEACAAJ",        
+"publisher":"Apress",
+"languageId":2
+}
+---------------------------------------------------
+{"title":"Thinking Functionally with Haskell",
+"thumbnail":"http://books.google.com/books/content?id=B4RxBAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":350,
+"link":"https://books.google.com/books/about/Thinking_Functionally_with_Haskell.html?hl=&id=B4RxBAAAQBAJ",
+"publisher":"Cambridge University Press",
+"languageId":2
+}
+-----------------------------------------------
+{"title":"Learn You a Haskell for Great Good!",
+"thumbnail":"http://books.google.com/books/content?id=R2RbBAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":400,
+"link":"https://books.google.com/books/about/Learn_You_a_Haskell_for_Great_Good.html?hl=&id=R2RbBAAAQBAJ",
+"publisher":"No Starch Press",
+"languageId":2
+}
+------------------------------------------------
+{"title":"Haskell Quick Syntax Reference",
+"thumbnail":"http://books.google.com/books/content?id=38mcDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":207,
+"link":"https://books.google.com/books/about/Haskell_Quick_Syntax_Reference.html?hl=&id=38mcDwAAQBAJ",
+"publisher":"Apress",
+"languageId":2
+}
+---------------------------------------------------------
+{"title":"Programming Elixir ≥ 1.6",
+"thumbnail":"http://books.google.com/books/content?id=ttJfDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 412,
+"link":"https://books.google.com/books/about/Programming_Elixir_1_6.html?hl=&id=ttJfDwAAQBAJ",
+"publisher":"Pragmatic Bookshelf",
+"languageId":3
+}
+--------------------------------------------------
+{"title":"Programming Elixir 1. 3",
+"thumbnail":"http://books.google.com/books/content?id=X2AuvgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":364,
+"link":"https://books.google.com/books/about/Programming_Elixir_1_3.html?hl=&id=X2AuvgAACAAJ",
+"publisher":"Pragmatic Bookshelf",
+"languageId":3
+}
+-----------------------------------------------
+{"title":"Elixir in Action",
+"thumbnail":"http://books.google.com/books/content?id=Dt6xtAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":384,
+"link":"https://books.google.com/books/about/Elixir_in_Action.html?hl=&id=Dt6xtAEACAAJ",
+"publisher":"Manning Publications",
+"languageId":3
+}
+------------------------------------------------
+{"title":"Erlang and Elixir for Imperative Programmers",
+"thumbnail":"http://books.google.com/books/content?id=_SigDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",            
+"pages":256,
+"link":"https://books.google.com/books/about/Erlang_and_Elixir_for_Imperative_Program.html?hl=&id=_SigDQAAQBAJ",
+"publisher":"Apress",
+"languageId":3
+}
+------------------------------------------------
+{"title":"Programming Elixir",
+"thumbnail":"http://books.google.com/books/content?id=hUE8nwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":280,
+"link":"https://books.google.com/books/about/Programming_Elixir.html?hl=&id=hUE8nwEACAAJ",     
+"publisher":"Pragmatic Bookshelf",
+"languageId":3
+}
+-------------------------------------------------
+{"title":"Introducing Elixir",
+"thumbnail":"http://books.google.com/books/content?id=ak59BAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":210,   
+"link":"https://books.google.com/books/about/Introducing_Elixir.html?hl=&id=ak59BAAAQBAJ",    
+"publisher":"\"O'Reilly Media, Inc.\"",
+"languageId":3
+}
+---------------------------------------------------
+{"title":"Mastering Elixir",
+"thumbnail":"http://books.google.com/books/content?id=WO1mDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",              "pages":574, 
+"link":"https://books.google.com/books/about/Mastering_Elixir.html?hl=&id=WO1mDwAAQBAJ",
+"publisher":"Packt Publishing Ltd",
+"languageId":3
+}
+-----------------------------------------------------------------------
+{"title":"Get Programming with F#",
+"thumbnail":"http://books.google.com/books/content?id=c_U3MQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":400, 
+"link":"https://books.google.com/books/about/Get_Programming_with_F.html?hl=&id=c_U3MQAACAAJ",
+"publisher": "Manning Publications",
+"languageId":4
+}
+---------------------------------------------------------
+{"title":"Expert F# 4.0",
+"thumbnail":"http://books.google.com/books/content?id=XKhPCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":582,  
+"link":"https://books.google.com/books/about/Expert_F_4_0.html?hl=&id=XKhPCwAAQBAJ",       
+"publisher":"Apress",
+"languageId":4
+}
+------------------------------------------------------------
+{"title":"Functional Programming Using F#",
+"thumbnail":"http://books.google.com/books/content?id=DUWVMQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":371,
+"link":"https://books.google.com/books/about/Functional_Programming_Using_F.html?hl=&id=DUWVMQEACAAJ",             
+"publisher":"Cambridge University Press",
+"languageId":4
+}
+--------------------------------------------------------------
+{"title":"Real-World Functional Programming",
+"thumbnail":"http://books.google.com/books/content?id=KfooAQAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+ "pages":529,  
+"link":"https://books.google.com/books/about/Real_World_Functional_Programming.html?hl=&id=KfooAQAAMAAJ",              
+"publisher":"Manning Publications Company",
+"languageId":4
+}
+----------------------------------------------------------
+{"title":"Expert F# 3.0",
+"thumbnail":"http://books.google.com/books/content?id=66jOWQEvBMEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",              "pages":638,
+"link":"https://books.google.com/books/about/Expert_F_3_0.html?hl=&id=66jOWQEvBMEC",
+"publisher":"Apress",
+"languageId":4
+}
+-----------------------------------------------------------
+{"title":"Fsharp for Techies",
+"thumbnail":"http://books.google.com/books/content?id=F83TswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", 
+"pages":96,  
+"link":"https://books.google.com/books/about/Fsharp_for_Techies.html?hl=&id=F83TswEACAAJ",             
+"publisher":"Createspace Independent Publishing Platform",
+"languageId":4
+}
+---------------------------------------------------------
+{"title":"Fsharp for Starters",
+"thumbnail":"http://books.google.com/books/content?id=ggCNtAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":96,
+"link":"https://books.google.com/books/about/Fsharp_for_Starters.html?hl=&id=ggCNtAEACAAJ",                
+"publisher":"Createspace Independent Publishing Platform",
+"languageId":4
+}
+----------------------------------------------------------
+{"title":"Fsharp for Students",
+"thumbnail":"http://books.google.com/books/content?id=X2vhswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":96,
+"link":"https://books.google.com/books/about/Fsharp_for_Students.html?hl=&id=X2vhswEACAAJ",              
+"publisher":"Createspace Independent Publishing Platform",
+"languageId":4
+}
+-----------------------------------------------------------
+{"title":"Fsharp for Newbies",
+"thumbnail":"http://books.google.com/books/content?id=ljjZswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":96,
+"link":"https://books.google.com/books/about/Fsharp_for_Newbies.html?hl=&id=ljjZswEACAAJ",                
+"publisher":"Createspace Independent Publishing Platform",
+"languageId":4
+}
+----------------------------------------------------------
+{"title":"The Book of F#",
+"thumbnail":"http://books.google.com/books/content?id=6gcvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":312,
+"link":"https://books.google.com/books/about/The_Book_of_F.html?hl=&id=6gcvDwAAQBAJ",               
+"publisher":"No Starch Press",
+"languageId":4
+}
+------------------------------------------------------------
+{"title":"Programming Clojure",
+"thumbnail":"http://books.google.com/books/content?id=lzvHAQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":304,
+"link":"https://books.google.com/books/about/Programming_Clojure.html?hl=&id=lzvHAQAACAAJ",             
+"publisher":"Pragmatic Bookshelf",
+"languageId":5
+}
+---------------------------------------------------------------
+{"title":"Clojure Programming",
+"thumbnail":"http://books.google.com/books/content?id=nZTvSa4KqfQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":607,
+"link":"https://books.google.com/books/about/Clojure_Programming.html?hl=&id=nZTvSa4KqfQC",                
+"publisher": "\"O'Reilly Media, Inc.\"",
+"languageId":5
+}
+-----------------------------------------------------------------
+{"title":"Clojure Programming Cookbook",
+"thumbnail":"http://books.google.com/books/content?id=VZvcDgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":618,
+"link":"https://books.google.com/books/about/Clojure_Programming_Cookbook.html?hl=&id=VZvcDgAAQBAJ",             
+"publisher":"Packt Publishing Ltd",
+"languageId":5
+}
+-------------------------------------------------------------
+{"title":"Clojure for the Brave and True",
+"thumbnail":"http://books.google.com/books/content?id=mQLPCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":336,
+"link":"https://books.google.com/books/about/Clojure_for_the_Brave_and_True.html?hl=&id=mQLPCgAAQBAJ",
+"publisher":"No Starch Press",
+"languageId":5
+}
+----------------------------------------------------------
+{"title":"Clojure High Performance Programming",
+"thumbnail":"http://books.google.com/books/content?id=H9tOCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":198,
+"link":"https://books.google.com/books/about/Clojure_High_Performance_Programming.html?hl=&id=H9tOCwAAQBAJ",               
+"publisher":"Packt Publishing Ltd",
+"languageId":5
+}
+--------------------------------------------------------------
+{"title":"Hands-On Reactive Programming with Clojure",
+"thumbnail":"http://books.google.com/books/content?id=g4KFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":298,
+"link":"https://books.google.com/books/about/Hands_On_Reactive_Programming_with_Cloju.html?hl=&id=g4KFDwAAQBAJ",
+"publisher":"Packt Publishing Ltd",
+"languageId":5
+}
+----------------------------------------------------------
+{"title":"Professional Clojure",
+"thumbnail":"http://books.google.com/books/content?id=jsc7CwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":264,
+"link":"https://books.google.com/books/about/Professional_Clojure.html?hl=&id=jsc7CwAAQBAJ",               
+"publisher":"John Wiley & Sons",
+"languageId":5
+}
+-------------------------------------------------------------
+{"title":"Quick Clojure",
+"thumbnail":"http://books.google.com/books/content?id=HXsyDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":200,
+"link":"https://books.google.com/books/about/Quick_Clojure.html?hl=&id=HXsyDwAAQBAJ",                
+"publisher":"Apress",
+"languageId":5
+}
+----------------------------------------------------------------
+{"title":"Clojure Reactive Programming",
+"thumbnail":"http://books.google.com/books/content?id=1tePBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":232,
+"link":"https://books.google.com/books/about/Clojure_Reactive_Programming.html?hl=&id=1tePBwAAQBAJ",              
+"publisher": "Packt Publishing Ltd",
+"languageId":5
+}
+--------------------------------------------------------------
+{"title":"Practical OCaml",
+"thumbnail":"http://books.google.com/books/content?id=BEcmpl5ezRoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":462,
+"link":"https://books.google.com/books/about/Practical_OCaml.html?hl=&id=BEcmpl5ezRoC",         
+"publisher":"Apress",
+"languageId":6
+}
+----------------------------------------------------------------
+{"title":"Real World OCaml",
+"thumbnail":"http://books.google.com/books/content?id=nabtAQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":510,
+"link":"https://books.google.com/books/about/Real_World_OCaml.html?hl=&id=nabtAQAAQBAJ",
+"publisher": "\"O'Reilly Media, Inc.\"",
+"languageId":6
+}
+---------------------------------------------------------------------
+{"title":"Functional Programming in Scala",
+"thumbnail":"http://books.google.com/books/content?id=bmTRlwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":320,
+"link":"https://books.google.com/books/about/Functional_Programming_in_Scala.html?hl=&id=bmTRlwEACAAJ",
+"publisher": "Manning Publications",
+"languageId":7
+}
+----------------------------------------------------------------------
+{"title":"Programming in Scala",
+"thumbnail":"http://books.google.com/books/content?id=MFjNhTjeQKkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 736,
+"link":"https://books.google.com/books/about/Programming_in_Scala.html?hl=&id=MFjNhTjeQKkC",
+"publisher": "Artima Inc",
+"languageId":7
+}
+--------------------------------------------------------------------------
+{"title":"Get Programming with Scala",
+"thumbnail":"http://books.google.com/books/content?id=f788EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":560,
+"link":"https://books.google.com/books/about/Get_Programming_with_Scala.html?hl=&id=f788EAAAQBAJ",
+"publisher":"Simon and Schuster",
+"languageId":7
+}
+----------------------------------------------------------------------
+{"title":"Scala Programming",
+"thumbnail":"http://books.google.com/books/content?id=naRzzgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":224,
+"link":"https://books.google.com/books/about/Scala_Programming.html?hl=&id=naRzzgEACAAJ",
+"publisher": "Independently Published",
+"languageId":7
+}
+-----------------------------------------------------------------------------
+{"title":"Learning Concurrent Programming in Scala",
+"thumbnail":"http://books.google.com/books/content?id=0UffrQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":366,
+"link":"https://books.google.com/books/about/Learning_Concurrent_Programming_in_Scala.html?hl=&id=0UffrQEACAAJ",
+"publisher":"Packt Publishing",
+"languageId":7
+}
+----------------------------------------------------------------------------
+{"title": "Scala Programming Projects",
+ "thumbnail": "http://books.google.com/books/content?id=4fx5tAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages": 398,
+"link": "https://books.google.com/books/about/Scala_Programming_Projects.html?hl=&id=4fx5tAEACAAJ",               
+"publisher": "Packt Publishing",
+"languageId":7
+}
+--------------------------------------------------------------------------
+{"title": "Scala Cookbook",
+"thumbnail":"http://books.google.com/books/content?id=xVU2AAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 722,
+"link":"https://books.google.com/books/about/Scala_Cookbook.html?hl=&id=xVU2AAAAQBAJ",
+"publisher": "\"O'Reilly Media, Inc.\"",
+"languageId":7
+}
+---------------------------------------------------------------------------------
+{"title":"Programming Scala",
+"thumbnail":"http://books.google.com/books/content?id=AnurBQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 586,
+"link":"https://books.google.com/books/about/Programming_Scala.html?hl=&id=AnurBQAAQBAJ",
+"publisher": "\"O'Reilly Media, Inc.\"",
+"languageId":7
+}
+-----------------------------------------------------------------------------
+{"title":"Programming with Scala",
+"thumbnail":"http://books.google.com/books/content?id=QIE6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":194,
+"link":"https://books.google.com/books/about/Programming_with_Scala.html?hl=&id=QIE6DwAAQBAJ",
+"publisher": "Springer",
+"languageId":7
+}
+-----------------------------------------------------------------------------
+{"title":"Racket Programming the Fun Way",
+"thumbnail":"http://books.google.com/books/content?id=u54LEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":360,
+"link":"https://books.google.com/books/about/Racket_Programming_the_Fun_Way.html?hl=&id=u54LEAAAQBAJ",              
+"publisher":"No Starch Press",
+"languageId":8
+}
+-------------------------------------------------------------------------------
+{"title":"Realm of Racket",
+"thumbnail":"http://books.google.com/books/content?id=bneLemwcRA0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 320,
+"link":"https://books.google.com/books/about/Realm_of_Racket.html?hl=&id=bneLemwcRA0C",
+"publisher": "No Starch Press",
+"languageId":8
+}
+----------------------------------------------------------------------
+{"title":"The Scheme Programming Language, fourth edition",
+"thumbnail":"http://books.google.com/books/content?id=brdNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages": 504,
+"link":"https://books.google.com/books/about/The_Scheme_Programming_Language_fourth_e.html?hl=&id=brdNEAAAQBAJ",
+"publisher":"MIT Press",
+"languageId":9
+}
+-------------------------------------------------------------------------
+{"title":"The Scheme Programming Language",
+"thumbnail":"http://books.google.com/books/content?id=ZahQAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":248,
+"link":"https://books.google.com/books/about/The_Scheme_Programming_Language.html?hl=&id=ZahQAAAAMAAJ",          
+"publisher": "Prentice Hall",
+"languageId":9
+}
+---------------------------------------------------------------------------
+{"title": "Scheme Programming Language",
+"thumbnail":"http://books.google.com/books/content?id=TTSsngEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages": 34,
+"link":"https://books.google.com/books/about/Scheme_Programming_Language.html?hl=&id=TTSsngEACAAJ",
+"publisher": "University-Press.org",
+"languageId":9
+}
+------------------------------------------------------------------------
+{"title":"Programming in SCHEME",
+"thumbnail":"http://books.google.com/books/content?id=QfnUBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":238,
+"link":"https://books.google.com/books/about/Programming_in_SCHEME.html?hl=&id=QfnUBwAAQBAJ",
+"publisher": "Springer",
+"languageId":9
+}
+--------------------------------------------------------------------
+{"title":"Programming and Meta-Programming in Scheme",
+"thumbnail":"http://books.google.com/books/content?id=uDzaBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 341,
+"link":"https://books.google.com/books/about/Programming_and_Meta_Programming_in_Sche.html?hl=&id=uDzaBwAAQBAJ",
+"publisher": "Springer Science & Business Media",
+"languageId":9
+}
+-----------------------------------------------------------------------
+{"title":"The Art of Lisp Programming",
+ "thumbnail": "http://books.google.com/books/content?id=bm_rBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":169,
+"link":"https://books.google.com/books/about/The_Art_of_Lisp_Programming.html?hl=&id=bm_rBwAAQBAJ",             
+"publisher":"Springer Science & Business Media",
+"languageId":10
+}
+--------------------------------------------------------------------------
+{"title":"Programming Algorithms in Lisp",
+"thumbnail":"http://books.google.com/books/content?id=KqS-zQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":377,
+"link":"https://books.google.com/books/about/Programming_Algorithms_in_Lisp.html?hl=&id=KqS-zQEACAAJ",
+"publisher": "Apress",
+"languageId":10
+}
+----------------------------------------------------------------------------
+{"title":"Interpreting LISP",
+ "thumbnail":"http://books.google.com/books/content?id=W3YpDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 150,
+"link": "https://books.google.com/books/about/Interpreting_LISP.html?hl=&id=W3YpDwAAQBAJ",
+"publisher": "Apress",
+"languageId":10
+}
+-------------------------------------------------------------------------
+{"title":"LISP, Lore, and Logic",
+"thumbnail":"http://books.google.com/books/content?id=yyrSBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":278,
+"link":"https://books.google.com/books/about/LISP_Lore_and_Logic.html?hl=&id=yyrSBwAAQBAJ",              
+"publisher": "Springer Science & Business Media",
+"languageId":10
+}
+-----------------------------------------------------------------------------
+{"title":"LISP 1.5 Programmer's Manual",
+"thumbnail":"http://books.google.com/books/content?id=68j6lEJjMQwC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":112,
+"link":"https://books.google.com/books/about/LISP_1_5_Programmer_s_Manual.html?hl=&id=68j6lEJjMQwC",           
+"publisher": "MIT Press",
+"languageId":10
+}
+------------------------------------------------------------------------
+{"title": "LISP (Programming Language)",
+"thumbnail":"http://books.google.com/books/content?id=IY_cswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":132,
+"link":"https://books.google.com/books/about/LISP_Programming_Language.html?hl=&id=IY_cswEACAAJ",
+"publisher":"Createspace Independent Publishing Platform",
+"languageId":10
+}
+----------------------------------------------------------------------------
+{"title": "Practical Common Lisp",
+"thumbnail":"http://books.google.com/books/content?id=dVJvr8PtCMUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 501,
+"link":"https://books.google.com/books/about/Practical_Common_Lisp.html?hl=&id=dVJvr8PtCMUC",
+"publisher": "Apress",
+"languageId":10
+}
+-------------------------------------------------------------------------
+{"title":"ML for the Working Programmer",
+"thumbnail":"http://books.google.com/books/content?id=XppZdaDs7e0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":476,
+"link":"https://books.google.com/books/about/ML_for_the_Working_Programmer.html?hl=&id=XppZdaDs7e0C",            
+"publisher":"Cambridge University Press",
+"languageId":11
+}
+-------------------------------------------------------------------
+{"title":"Elements of ML Programming",
+"thumbnail":"http://books.google.com/books/content?id=KIUsQQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":383,
+"link":"https://books.google.com/books/about/Elements_of_ML_Programming.html?hl=&id=KIUsQQAACAAJ",              
+"publisher": "Pearson",
+"languageId":11
+}
+----------------------------------------------------------------
+{"title":"Programming with Standard ML",
+"thumbnail":"http://books.google.com/books/content?id=DalQAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":301,
+ "link":"https://books.google.com/books/about/Programming_with_Standard_ML.html?hl=&id=DalQAAAAMAAJ",          
+"publisher": "Prentice Hall",
+"languageId":11
+}
+------------------------------------------------------------
+{"title":"The Definition of Standard ML",
+"thumbnail":"http://books.google.com/books/content?id=e0PhKfbj-p8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":114,
+"link":"https://books.google.com/books/about/The_Definition_of_Standard_ML.html?hl=&id=e0PhKfbj-p8C",              
+"publisher": "MIT Press",
+"languageId":11
+}
+-----------------------------------------------------------------
+{"title":"Apl Programming Language Family",
+"thumbnail":"http://books.google.com/books/content?id=M-YTnwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages":32,
+"link":"https://books.google.com/books/about/Apl_Programming_Language_Family.html?hl=&id=M-YTnwEACAAJ",
+"publisher": "University-Press.org",
+"languageId":12
+}
+------------------------------------------------------------------
+{"title":"APL Programming and Computer Techniques",
+ "thumbnail":"http://books.google.com/books/content?id=3s8mAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages": 329,
+"link": "https://books.google.com/books/about/APL_Programming_and_Computer_Techniques.html?hl=&id=3s8mAAAAMAAJ",
+"publisher": "New York : Van Nostrand Reinhold",
+"languageId":12
+}
+-------------------------------------------------------------------
+{"title": "An APL Compiler",
+ "thumbnail":"http://books.google.com/books/content?id=rTb2BwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 156,
+"link":"https://books.google.com/books/about/An_APL_Compiler.html?hl=&id=rTb2BwAAQBAJ",   
+"publisher": "Springer Science & Business Media",
+"languageId":12
+}
+---------------------------------------------------------------------
+{"title":"Programming with Miranda",
+"thumbnail":"http://books.google.com/books/content?id=x4ZQAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages": 312,
+"link": "https://books.google.com/books/about/Programming_with_Miranda.html?hl=&id=x4ZQAAAAMAAJ",
+"publisher": "Prentice Hall",
+"languageId":13
+}
+----------------------------------------------------------------
+{"title":"Miranda",
+"thumbnail":"http://books.google.com/books/content?id=-35QAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages": 451,
+"link": "https://books.google.com/books/about/Miranda.html?hl=&id=-35QAAAAMAAJ",
+"publisher": "Addison-Wesley",
+"languageId":13
+}
+-----------------------------------------------------------------
+{"title":"Verified Functional Programming in Agda",
+"thumbnail":"http://books.google.com/books/content?id=WkBiDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages": 284,
+"link": "https://books.google.com/books/about/Verified_Functional_Programming_in_Agda.html?hl=&id=WkBiDwAAQBAJ",            
+"publisher": "Morgan & Claypool",
+"languageId":14
+}
+-----------------------------------------------------------------
+{"title":"Trends in Functional Programming",
+"thumbnail":"http://books.google.com/books/content?id=2Ze2EnsCDxgC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 187,
+ "link":"https://books.google.com/books/about/Trends_in_Functional_Programming.html?hl=&id=2Ze2EnsCDxgC",
+"publisher": "Intellect Books",
+"languageId":14
+}
+---------------------------------------------------------------
+{"title": "Theorem Proving in Higher Order Logics",
+"thumbnail":"http://books.google.com/books/content?id=rOVtCQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 517,
+ "link": "https://books.google.com/books/about/Theorem_Proving_in_Higher_Order_Logics.html?hl=&id=rOVtCQAAQBAJ",            
+  "publisher": "Springer",
+"languageId":14
+}
+------------------------------------------------------------------
+{"title": "Programming Erlang",
+ "thumbnail":"http://books.google.com/books/content?id=tAqHnQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"pages": 520,
+"link": "https://books.google.com/books/about/Programming_Erlang.html?hl=&id=tAqHnQEACAAJ",
+"publisher": "Pragmatic Bookshelf",
+"languageId":15
+}
+---------------------------------------------------------------
+{"title": "Erlang Programming",
+  "thumbnail":"http://books.google.com/books/content?id=Qr_WuvfTSpEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 498,
+ "link": "https://books.google.com/books/about/Erlang_Programming.html?hl=&id=Qr_WuvfTSpEC",          
+"publisher": "\"O'Reilly Media, Inc.\"",
+"languageId":15
+}
+
+------------------------------------------------------------------
+{"title": "Introducing Erlang",
+ "thumbnail": "http://books.google.com/books/content?id=ST_joiYpV44C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages": 204,
+"link": "https://books.google.com/books/about/Introducing_Erlang.html?hl=&id=ST_joiYpV44C",         
+                "publisher": "\"O'Reilly Media, Inc.\"",
+"languageId":15
+}
+------------------------------------------------------------------
+--------------------
+Nije umetnuto:
+-------------------------------------
+------------------------------
+
+{       "title": "Web Applications with Elm",
+	"thumbnail": "http://books.google.com/books/content?id=KnhqDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+
+"canonicalVolumeLink": "link" : "https://books.google.com/books/about/Web_Applications_with_Elm.html?hl=&id=KnhqDwAAQBAJ",
+
+? "author" : "Wolfgang Loder",
+      "publisher": "Apress",
+"pageCount":    "pages" : 140,
+
+----------------------------------------------
+
+"title": "Elm in Action",
+
+"thumbnail": "http://books.google.com/books/content?id=rHbgDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+
+"canonicalVolumeLink": 
+"link" :
+"https://books.google.com/books/about/Elm_in_Action.html?hl=&id=rHbgDwAAQBAJ"
+
+"pageCount":    "pages" : 344,
+
+"publisher": "Manning Publications",
+
+? "authors": "Richard Feldman"
+--------------------------------------------------
+
+
+"title": "Design Concepts in Programming Languages",
+                "author" :
+                    "Franklyn Turbak",
+.......vise njih.......
+                    "David K. Gifford",
+                    "Mark A. Sheldon"
+                ],
+                "publisher": "MIT Press",
+
+"pageCount":       "pages" : 1322,
+
+"thumbnail": "http://books.google.com/books/content?id=xpT6AQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+
+"canonicalVolumeLink": "https://books.google.com/books/about/Design_Concepts_in_Programming_Languages.html?hl=&id=xpT6AQAAQBAJ"
+
+
+--------------------------------------------------
+
+"title": "ELM Web Development",
+                "authors": [
+                    "Ajdin Imsirovic"
+                ],
+                "publisher": "Packt Publishing",
+
+"pageCount": 288,
+
+ "thumbnail": "http://books.google.com/books/content?id=ZY0QtAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+
+"canonicalVolumeLink": "https://books.google.com/books/about/ELM_Web_Development.html?hl=&id=ZY0QtAEACAAJ"
+
+---------------------------------
+
+"title": "Programming Elm",
+                "subtitle": "Build Safe, Sane, and Maintainable Front-End Applications",
+                "authors": [
+                    "Jeremy Fairbank"
+                ],
+                "publisher": "Pragmatic Bookshelf",
+
+
+"pageCount": 310,
+
+"thumbnail": "http://books.google.com/books/content?id=R-2oDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+
+"canonicalVolumeLink": "https://books.google.com/books/about/Programming_Elm.html?hl=&id=R-2oDwAAQBAJ"
+
+------------------------------------------------
+
+"title": "Programming in Haskell",
+                "authors": [
+                    "Graham Hutton"
+                ],
+                "publisher": "Cambridge University Press",
+
+"pageCount": 320,
+
+ "thumbnail": "http://books.google.com/books/content?id=75C5DAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+
+"canonicalVolumeLink": "https://books.google.com/books/about/Programming_in_Haskell.html?hl=&id=75C5DAAAQBAJ"
+
+------------------------------------------
+
+"title": "Haskell in Depth",
+                "authors": [
+                    "Vitaly Bragilevsky"
+                ],
+                "publisher": "Simon and Schuster",
+
+"pageCount": 664,
+
+"thumbnail": "http://books.google.com/books/content?id=r4UxEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+
+"canonicalVolumeLink": "https://books.google.com/books/about/Haskell_in_Depth.html?hl=&id=r4UxEAAAQBAJ"
+
+---------------------------------------------------
+
+"title": "Get Programming with Haskell",       
+
+                "authors": [
+                    "Will Kurt"
+                ],
+                "publisher": "Manning",
+                "pageCount": 616,
+"thumbnail": "http://books.google.com/books/content?id=uzT4vQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+"canonicalVolumeLink": "https://books.google.com/books/about/Get_Programming_with_Haskell.html?hl=&id=uzT4vQAACAAJ"
+
+--------------------------------------------------------
+
+
+"title": "Haskell",
+                "subtitle": "The Craft of Functional Programming",
+                "authors": [
+                    "Simon Thompson"
+                ],
+                "publisher": "Addison-Wesley",
+ "pageCount": 487,
+"thumbnail": "http://books.google.com/books/content?id=a39QAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Haskell.html?hl=&id=a39QAAAAMAAJ"
+------------------------------------------------------------------------
+
+"title": "The Haskell School of Expression",
+                "subtitle": "Learning Functional Programming Through Multimedia",
+                "authors": [
+                    "Paul Hudak"
+                ],
+                "publisher": "Cambridge University Press",
+"pageCount": 363,
+"thumbnail": "http://books.google.com/books/content?id=lQbth9j5j9oC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/The_Haskell_School_of_Expression.html?hl=&id=lQbth9j5j9oC"
+
+-------------------------------------------------------------------------------
+
+"title": "Practical Haskell",
+                "subtitle": "A Real World Guide to Programming",
+                "authors": [
+                    "Alejandro Serrano Mena"
+                ],
+                "publisher": "Apress",
+"pageCount": 595,
+ "thumbnail": "http://books.google.com/books/content?id=7-4jwQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Practical_Haskell.html?hl=&id=7-4jwQEACAAJ"
+
+-----------------------------------------------------------------------------------
+
+"title": "Thinking Functionally with Haskell",
+                "authors": [
+                    "Richard Bird"
+                ],
+                "publisher": "Cambridge University Press",
+"pageCount": 350,
+ "thumbnail": "http://books.google.com/books/content?id=B4RxBAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Thinking_Functionally_with_Haskell.html?hl=&id=B4RxBAAAQBAJ"
+
+-------------------------------------------------------------------------------------
+
+"title": "Learn You a Haskell for Great Good!",
+                "subtitle": "A Beginner's Guide",
+                "authors": [
+                    "Miran Lipovaca"
+                ],
+                "publisher": "No Starch Press",
+"pageCount": 400,
+   "thumbnail": "http://books.google.com/books/content?id=R2RbBAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Learn_You_a_Haskell_for_Great_Good.html?hl=&id=R2RbBAAAQBAJ"
+
+---------------------------------------------------------------------------
+
+"title": "Haskell Quick Syntax Reference",
+                "subtitle": "A Pocket Guide to the Language, APIs, and Library",
+                "authors": [
+                    "Stefania Loredana Nita",
+                    "Marius Mihailescu"
+                ],
+                "publisher": "Apress",
+"pageCount": 207,
+"thumbnail": "http://books.google.com/books/content?id=38mcDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Haskell_Quick_Syntax_Reference.html?hl=&id=38mcDwAAQBAJ"
+
+-------------------------------------------------------------------------------
+
+"title": "Programming Elixir ≥ 1.6",
+                "subtitle": "Functional |> Concurrent |> Pragmatic |> Fun",
+                "authors": [
+                    "Dave Thomas"
+                ],
+                "publisher": "Pragmatic Bookshelf",
+                "pageCount": 412,
+"thumbnail": "http://books.google.com/books/content?id=ttJfDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Programming_Elixir_1_6.html?hl=&id=ttJfDwAAQBAJ"
+
+--------------------------------------------------------------
+
+"title": "Programming Elixir 1. 3",
+                "subtitle": "Functional > Concurrent > Pragmatic > Fun",
+                "authors": [
+                    "Dave Thomas"
+                ],
+                "publisher": "Pragmatic Bookshelf",
+"pageCount": 364,
+ "thumbnail": "http://books.google.com/books/content?id=X2AuvgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+  "canonicalVolumeLink": "https://books.google.com/books/about/Programming_Elixir_1_3.html?hl=&id=X2AuvgAACAAJ"
+
+----------------------------------------------------------------------------
+
+"volumeInfo": {
+                "title": "Elixir in Action",
+                "authors": [
+                    "Sasa Jurić"
+                ],
+                "publisher": "Manning Publications",
+               "pageCount": 384,
+    "thumbnail": "http://books.google.com/books/content?id=Dt6xtAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Elixir_in_Action.html?hl=&id=Dt6xtAEACAAJ"
+
+----------------------------------------------------------------------------
+
+"title": "Erlang and Elixir for Imperative Programmers",
+                "authors": [
+                    "Wolfgang Loder"
+                ],
+                "publisher": "Apress",
+"pageCount": 256,
+"thumbnail": "http://books.google.com/books/content?id=_SigDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Erlang_and_Elixir_for_Imperative_Program.html?hl=&id=_SigDQAAQBAJ"
+
+--------------------------------------------------------------------------
+
+"title": "Programming Elixir",
+                "subtitle": "Functional > Concurrent > Pragmatic > Fun",
+                "authors": [
+                    "Dave Thomas"
+                ],
+                "publisher": "Pragmatic Bookshelf",
+"pageCount": 280,
+ "thumbnail": "http://books.google.com/books/content?id=hUE8nwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Programming_Elixir.html?hl=&id=hUE8nwEACAAJ"
+
+----------------------------------------------------------------------------------
+
+"title": "Introducing Elixir",
+                "subtitle": "Getting Started in Functional Programming",
+                "authors": [
+                    "Simon St. Laurent",
+                    "J. David Eisenberg"
+                ],
+                "publisher": "\"O'Reilly Media, Inc.\"",
+"pageCount": 210,
+"thumbnail": "http://books.google.com/books/content?id=ak59BAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Introducing_Elixir.html?hl=&id=ak59BAAAQBAJ"
+
+-------------------------------------------------------------------------------
+
+"title": "Mastering Elixir",
+                "subtitle": "Build and scale concurrent, distributed, and fault-tolerant applications",
+                "authors": [
+                    "André Albuquerque",
+                    "Daniel Caixinha"
+                ],
+                "publisher": "Packt Publishing Ltd",
+"pageCount": 574,
+"thumbnail": "http://books.google.com/books/content?id=WO1mDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+   "canonicalVolumeLink": "https://books.google.com/books/about/Mastering_Elixir.html?hl=&id=WO1mDwAAQBAJ"
+
+--------------------------------------------------------------------------
+
+"title": "Get Programming with F#",
+                "subtitle": "A Guide for . NET Developers",
+                "authors": [
+                    "Isaac Abraham"
+                ],
+                "publisher": "Manning Publications",
+"pageCount": 400,
+ "thumbnail": "http://books.google.com/books/content?id=c_U3MQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Get_Programming_with_F.html?hl=&id=c_U3MQAACAAJ"
+
+-----------------------------------------------------------------------------
+
+"title": "Expert F# 4.0",
+                "authors": [
+                    "Don Syme",
+                    "Adam Granicz",
+                    "Antonio Cisternino"
+                ],
+                "publisher": "Apress",
+"pageCount": 582,
+"thumbnail": "http://books.google.com/books/content?id=XKhPCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Expert_F_4_0.html?hl=&id=XKhPCwAAQBAJ"
+
+--------------------------------------------------------------------------------
+
+"title": "Functional Programming Using F#",
+                "authors": [
+                    "Michael R. Hansen",
+                    "Hans Rischel"
+                ],
+                "publisher": "Cambridge University Press",
+"pageCount": 371,
+"thumbnail": "http://books.google.com/books/content?id=DUWVMQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Functional_Programming_Using_F.html?hl=&id=DUWVMQEACAAJ"
+
+------------------------------------------------------------------------------------------
+
+"title": "Real-World Functional Programming",
+                "subtitle": "With Examples in F# and C#",
+                "authors": [
+                    "Tomas Petricek",
+                    "Jon Skeet"
+                ],
+                "publisher": "Manning Publications Company",
+ "pageCount": 529,
+ "thumbnail": "http://books.google.com/books/content?id=KfooAQAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Real_World_Functional_Programming.html?hl=&id=KfooAQAAMAAJ"
+
+--------------------------------------------------------------------------------------
+
+"title": "Expert F# 3.0",
+                "authors": [
+                    "Don Syme",
+                    "Adam Granicz",
+                    "Antonio Cisternino"
+                ],
+                "publisher": "Apress",
+"pageCount": 638,
+ "thumbnail": "http://books.google.com/books/content?id=66jOWQEvBMEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Expert_F_3_0.html?hl=&id=66jOWQEvBMEC"
+
+-----------------------------------------------------------------------------------
+
+"title": "Fsharp for Techies",
+                "authors": [
+                    "Sam Robson"
+                ],
+                "publisher": "Createspace Independent Publishing Platform",
+"pageCount": 96,
+"thumbnail": "http://books.google.com/books/content?id=F83TswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Fsharp_for_Techies.html?hl=&id=F83TswEACAAJ"
+
+------------------------------------------------------------------------------
+
+"title": "Fsharp for Starters",
+                "authors": [
+                    "Rodger Carlisle"
+                ],
+                "publisher": "Createspace Independent Publishing Platform",
+"pageCount": 96,
+"thumbnail": "http://books.google.com/books/content?id=ggCNtAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Fsharp_for_Starters.html?hl=&id=ggCNtAEACAAJ"
+
+------------------------------------------------------------------------
+
+"title": "Fsharp for Students",
+                "authors": [
+                    "Marilyn Sanders"
+                ],
+                "publisher": "Createspace Independent Publishing Platform",
+"pageCount": 96,
+"thumbnail": "http://books.google.com/books/content?id=X2vhswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Fsharp_for_Students.html?hl=&id=X2vhswEACAAJ"
+
+---------------------------------------------------------------------
+
+"title": "Fsharp for Newbies",
+                "authors": [
+                    "James Graff"
+                ],
+                "publisher": "Createspace Independent Publishing Platform",
+"pageCount": 96,
+ "thumbnail": "http://books.google.com/books/content?id=ljjZswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Fsharp_for_Newbies.html?hl=&id=ljjZswEACAAJ"
+
+-----------------------------------------------------------------------------
+
+"title": "The Book of F#",
+                "subtitle": "Breaking Free with Managed Functional Programming",
+                "authors": [
+                    "Dave Fancher"
+                ],
+                "publisher": "No Starch Press",
+"pageCount": 312,
+"thumbnail": "http://books.google.com/books/content?id=6gcvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/The_Book_of_F.html?hl=&id=6gcvDwAAQBAJ"
+
+------------------------------------------------------------------------------
+
+"title": "Programming Clojure",
+                "authors": [
+                    "Alex Miller",
+                    "Stuart Halloway",
+                    "Aaron Bedra"
+"publisher": "Pragmatic Bookshelf",
+"pageCount": 304,
+"thumbnail": "http://books.google.com/books/content?id=lzvHAQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Programming_Clojure.html?hl=&id=lzvHAQAACAAJ"
+
+--------------------------------------------------------------------------------
+
+"title": "Clojure Programming",
+                "authors": [
+                    "Chas Emerick",
+                    "Brian Carper",
+                    "Christophe Grand"
+                ],
+                "publisher": "\"O'Reilly Media, Inc.\"",
+"pageCount": 607,
+"thumbnail": "http://books.google.com/books/content?id=nZTvSa4KqfQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Clojure_Programming.html?hl=&id=nZTvSa4KqfQC"
+
+---------------------------------------------------------------------------
+
+"title": "Clojure Programming Cookbook",
+                "authors": [
+                    "Makoto Hashimoto",
+                    "Nicolas Modrzyk"
+                ],
+                "publisher": "Packt Publishing Ltd",
+"pageCount": 618,
+ "thumbnail": "http://books.google.com/books/content?id=VZvcDgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Clojure_Programming_Cookbook.html?hl=&id=VZvcDgAAQBAJ"
+
+------------------------------------------------------------------------
+
+"title": "Clojure for the Brave and True",
+                "subtitle": "Learn the Ultimate Language and Become a Better Programmer",
+                "authors": [
+                    "Daniel Higginbotham"
+                ],
+                "publisher": "No Starch Press",
+"pageCount": 336,
+"thumbnail": "http://books.google.com/books/content?id=mQLPCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Clojure_for_the_Brave_and_True.html?hl=&id=mQLPCgAAQBAJ"
+
+--------------------------------------------------------------------
+
+"title": "Clojure High Performance Programming",
+                "authors": [
+                    "Shantanu Kumar"
+                ],
+                "publisher": "Packt Publishing Ltd",
+"pageCount": 198,
+ "thumbnail": "http://books.google.com/books/content?id=H9tOCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Clojure_High_Performance_Programming.html?hl=&id=H9tOCwAAQBAJ"
+
+--------------------------------------------------------------------------------
+
+"title": "Hands-On Reactive Programming with Clojure",
+                "subtitle": "Create asynchronous, event-based, and concurrent applications, 2nd Edition",
+                "authors": [
+                    "Konrad Szydlo",
+                    "Leonardo Borges"
+                ],
+                "publisher": "Packt Publishing Ltd",
+"pageCount": 298,
+"thumbnail": "http://books.google.com/books/content?id=g4KFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Hands_On_Reactive_Programming_with_Cloju.html?hl=&id=g4KFDwAAQBAJ"
+
+--------------------------------------------------------------------------------
+
+"title": "Professional Clojure",
+                "authors": [
+                    "Jeremy Anderson",
+                    "Michael Gaare",
+                    "Timothy Pratley",
+                    "Nick Bailey",
+                    "Justin HolguÃn"
+                ],
+                "publisher": "John Wiley & Sons",
+"pageCount": 264,
+ "thumbnail": "http://books.google.com/books/content?id=jsc7CwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Professional_Clojure.html?hl=&id=jsc7CwAAQBAJ"
+
+---------------------------------------------------------------------------------
+
+"title": "Quick Clojure",
+                "subtitle": "Effective Functional Programming",
+                "authors": [
+                    "Mark McDonnell"
+                ],
+                "publisher": "Apress",
+"pageCount": 200,
+"thumbnail": "http://books.google.com/books/content?id=HXsyDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Quick_Clojure.html?hl=&id=HXsyDwAAQBAJ"
+
+-------------------------------------------------------------------------------
+
+"title": "Clojure Reactive Programming",
+                "authors": [
+                    "Leonardo Borges"
+                ],
+                "publisher": "Packt Publishing Ltd",
+"pageCount": 232,
+ "thumbnail": "http://books.google.com/books/content?id=1tePBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Clojure_Reactive_Programming.html?hl=&id=1tePBwAAQBAJ"
+
+----------------------------------------------------------------------------------
+
+"title": "Practical OCaml",
+                "authors": [
+                    "Joshua B. Smith"
+                ],
+                "publisher": "Apress",
+"pageCount": 462,
+ "thumbnail": "http://books.google.com/books/content?id=BEcmpl5ezRoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Practical_OCaml.html?hl=&id=BEcmpl5ezRoC"
+
+---------------------------------------------------------------------------------
+
+ "title": "Real World OCaml",
+                "subtitle": "Functional Programming for the Masses",
+                "authors": [
+                    "Yaron Minsky",
+                    "Anil Madhavapeddy",
+                    "Jason Hickey"
+                ],
+                "publisher": "\"O'Reilly Media, Inc.\"",
+ "pageCount": 510,
+"thumbnail": "http://books.google.com/books/content?id=nabtAQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Real_World_OCaml.html?hl=&id=nabtAQAAQBAJ"
+
+--------------------------------------------------------------------------
+
+"title": "Functional Programming in Scala",
+                "authors": [
+                    "Paul Chiusano",
+                    "Runar Bjarnason"
+                ],
+                "publisher": "Manning Publications",
+"pageCount": 320,
+"thumbnail": "http://books.google.com/books/content?id=bmTRlwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Functional_Programming_in_Scala.html?hl=&id=bmTRlwEACAAJ"
+
+--------------------------------------------------------------------------
+
+"title": "Programming in Scala",
+                "authors": [
+                    "Martin Odersky",
+                    "Lex Spoon",
+                    "Bill Venners"
+                ],
+                "publisher": "Artima Inc",
+"pageCount": 736,
+"thumbnail": "http://books.google.com/books/content?id=MFjNhTjeQKkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Programming_in_Scala.html?hl=&id=MFjNhTjeQKkC"
+
+--------------------------------------------------------------------------------
+
+"title": "Get Programming with Scala",
+                "authors": [
+                    "Daniela Sfregola"
+                ],
+                "publisher": "Simon and Schuster",
+"pageCount": 560,
+ "thumbnail": "http://books.google.com/books/content?id=f788EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Get_Programming_with_Scala.html?hl=&id=f788EAAAQBAJ"
+
+------------------------------------------------------------------------------
+
+"title": "Scala Programming",
+                "subtitle": "A Comprehensive Beginner's Guide to Scala, 2nd Edition",
+                "authors": [
+                    "Claudia Alves",
+                    "Emma William"
+                ],
+"publisher": "Independently Published",
+"pageCount": 224,
+"thumbnail": "http://books.google.com/books/content?id=naRzzgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+ "canonicalVolumeLink": "https://books.google.com/books/about/Scala_Programming.html?hl=&id=naRzzgEACAAJ"
+
+--------------------------------------------------------------------------------
+"title": "Learning Concurrent Programming in Scala",
+                "authors": [
+                    "Felix Frank"
+                ],
+"publisher": "Packt Publishing",
+"pageCount": 366,
+ "thumbnail": "http://books.google.com/books/content?id=0UffrQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Learning_Concurrent_Programming_in_Scala.html?hl=&id=0UffrQEACAAJ"
+
+-----------------------------------------------------------------------------
+"title": "Scala Programming Projects",
+                "authors": [
+                    "Mikaël Valot",
+                    "Nicolas Jorand"
+                ],
+"publisher": "Packt Publishing",
+"pageCount": 398,
+"thumbnail": "http://books.google.com/books/content?id=4fx5tAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Scala_Programming_Projects.html?hl=&id=4fx5tAEACAAJ"
+
+------------------------------------------------------------------------------
+
+"title": "Scala Cookbook",
+                "subtitle": "Recipes for Object-Oriented and Functional Programming",
+                "authors": [
+                    "Alvin Alexander"
+                ],
+                "publisher": "\"O'Reilly Media, Inc.\"",
+"pageCount": 722,
+ "thumbnail": "http://books.google.com/books/content?id=xVU2AAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Scala_Cookbook.html?hl=&id=xVU2AAAAQBAJ"
+
+-----------------------------------------------------------------------------
+
+"title": "Programming Scala",
+                "subtitle": "Scalability = Functional Programming + Objects",
+                "authors": [
+                    "Dean Wampler",
+                    "Alex Payne"
+                ],
+                "publisher": "\"O'Reilly Media, Inc.\"",
+"pageCount": 586,
+"thumbnail": "http://books.google.com/books/content?id=AnurBQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Programming_Scala.html?hl=&id=AnurBQAAQBAJ"
+
+-----------------------------------------------------------------------------------
+
+"title": "Programming with Scala",
+                "subtitle": "Language Exploration",
+                "authors": [
+                    "Bhim P. Upadhyaya"
+                ],
+                "publisher": "Springer",
+"pageCount": 194,
+"thumbnail": "http://books.google.com/books/content?id=QIE6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Programming_with_Scala.html?hl=&id=QIE6DwAAQBAJ"
+
+--------------------------------------------------------------------------------------
+
+"title": "Racket Programming the Fun Way",
+                "subtitle": "From Strings to Turing Machines",
+                "authors": [
+                    "James. W. Stelly"
+                ],
+                "publisher": "No Starch Press",
+"pageCount": 360,
+"thumbnail": "http://books.google.com/books/content?id=u54LEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Racket_Programming_the_Fun_Way.html?hl=&id=u54LEAAAQBAJ"
+
+-----------------------------------------------------------------------------------------
+
+"title": "Realm of Racket",
+                "subtitle": "Learn to Program, One Game at a Time!",
+                "authors": [
+                    "Matthias Felleisen",
+                    "David Van Horn",
+                    "Conrad Barski",
+                    "Northeastern University Students"
+                ],
+                "publisher": "No Starch Press",
+"pageCount": 320,
+"thumbnail": "http://books.google.com/books/content?id=bneLemwcRA0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+  "canonicalVolumeLink": "https://books.google.com/books/about/Realm_of_Racket.html?hl=&id=bneLemwcRA0C"
+
+-------------------------------------------------------------------------------------
+
+"title": "The Scheme Programming Language, fourth edition",
+                "authors": [
+                    "R. Kent Dybvig"
+                ],
+                "publisher": "MIT Press"
+"pageCount": 504,
+"thumbnail": "http://books.google.com/books/content?id=brdNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/The_Scheme_Programming_Language_fourth_e.html?hl=&id=brdNEAAAQBAJ"
+
+-------------------------------------------------------------------------
+
+"title": "The Scheme Programming Language",
+                "subtitle": "ANSI Scheme",
+                "authors": [
+                    "R. Kent Dybvig"
+                ],
+                "publisher": "Prentice Hall",
+"pageCount": 248,
+ "thumbnail": "http://books.google.com/books/content?id=ZahQAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/The_Scheme_Programming_Language.html?hl=&id=ZahQAAAAMAAJ"
+
+-------------------------------------------------------------------------------
+
+"title": "Scheme Programming Language",
+                "subtitle": "Call-With-Current-Continuation, Document Style Semantics and Specification Language, History of the Scheme Programming La",
+                "authors": [
+                    "Source Wikipedia"
+                ],
+                "publisher": "University-Press.org",
+"pageCount": 34,
+ "thumbnail": "http://books.google.com/books/content?id=TTSsngEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Scheme_Programming_Language.html?hl=&id=TTSsngEACAAJ"
+
+------------------------------------------------------------------------------------------
+
+"title": "Programming in SCHEME",
+                "subtitle": "Learn SHEME Through Artificial Intelligence Programs",
+                "authors": [
+                    "Mark Watson"
+                ],
+                "publisher": "Springer",
+"pageCount": 238,
+"thumbnail": "http://books.google.com/books/content?id=QfnUBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Programming_in_SCHEME.html?hl=&id=QfnUBwAAQBAJ"
+
+-----------------------------------------------------------------------------------
+
+"title": "Programming and Meta-Programming in Scheme",
+                "authors": [
+                    "Jon Pearce"
+                ],
+                "publisher": "Springer Science & Business Media",
+"pageCount": 341,
+"thumbnail": "http://books.google.com/books/content?id=uDzaBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Programming_and_Meta_Programming_in_Sche.html?hl=&id=uDzaBwAAQBAJ"
+
+-----------------------------------------------------------------------------------
+
+ "title": "The Art of Lisp Programming",
+                "authors": [
+                    "Robin Jones",
+                    "Clive Maynard",
+                    "Ian Stewart"
+                ],
+                "publisher": "Springer Science & Business Media",
+"pageCount": 169,
+"thumbnail": "http://books.google.com/books/content?id=bm_rBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/The_Art_of_Lisp_Programming.html?hl=&id=bm_rBwAAQBAJ"
+
+-----------------------------------------------------------------------------------------------
+
+"title": "Programming Algorithms in Lisp",
+                "subtitle": "Writing Efficient Programs with Examples in ANSI Common Lisp",
+                "authors": [
+                    "Vsevolod Domkin"
+                ],
+                "publisher": "Apress",
+"pageCount": 377,
+"thumbnail": "http://books.google.com/books/content?id=KqS-zQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Programming_Algorithms_in_Lisp.html?hl=&id=KqS-zQEACAAJ"
+
+-----------------------------------------------------------------------------------------
+
+"title": "Interpreting LISP",
+                "subtitle": "Programming and Data Structures",
+                "authors": [
+                    "Gary D. Knott"
+                ],
+                "publisher": "Apress",
+"pageCount": 150,
+"thumbnail": "http://books.google.com/books/content?id=W3YpDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Interpreting_LISP.html?hl=&id=W3YpDwAAQBAJ"
+
+------------------------------------------------------------------------------------
+
+"title": "LISP, Lore, and Logic",
+                "subtitle": "An Algebraic View of LISP Programming, Foundations, and Applications",
+                "authors": [
+                    "W. Richard Stark"
+                ],
+                "publisher": "Springer Science & Business Media",
+"pageCount": 278,
+"thumbnail": "http://books.google.com/books/content?id=yyrSBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/LISP_Lore_and_Logic.html?hl=&id=yyrSBwAAQBAJ"
+
+------------------------------------------------------------------------------------
+
+"title": "LISP 1.5 Programmer's Manual",
+                "authors": [
+                    "John McCarthy",
+                    "Paul W. Abrahams",
+                    "Daniel J. Edwards",
+                    "Timothy P. Hart",
+                    "Michael I. Levin"
+                ],
+                "publisher": "MIT Press",
+"pageCount": 112,
+"thumbnail": "http://books.google.com/books/content?id=68j6lEJjMQwC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/LISP_1_5_Programmer_s_Manual.html?hl=&id=68j6lEJjMQwC"
+
+--------------------------------------------------------------------------------------
+
+"title": "LISP (Programming Language)",
+                "subtitle": "First Look",
+                "authors": [
+                    "Gerardus Blokdyk"
+                ],
+                "publisher": "Createspace Independent Publishing Platform",
+"pageCount": 132,
+"thumbnail": "http://books.google.com/books/content?id=IY_cswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/LISP_Programming_Language.html?hl=&id=IY_cswEACAAJ"
+
+---------------------------------------------------------------------------------
+
+"title": "Practical Common Lisp",
+                "authors": [
+                    "Peter Seibel"
+                ],
+                "publisher": "Apress",
+"pageCount": 501,
+"thumbnail": "http://books.google.com/books/content?id=dVJvr8PtCMUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Practical_Common_Lisp.html?hl=&id=dVJvr8PtCMUC"
+
+------------------------------------------------------------------------------------------
+
+"title": "ML for the Working Programmer",
+                "authors": [
+                    "Lawrence C. Paulson",
+                    "Larry C. Paulson"
+                ],
+                "publisher": "Cambridge University Press",
+"pageCount": 476,
+"thumbnail": "http://books.google.com/books/content?id=XppZdaDs7e0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/ML_for_the_Working_Programmer.html?hl=&id=XppZdaDs7e0C"
+
+-----------------------------------------------------------------------------
+
+"title": "Elements of ML Programming",
+                "authors": [
+                    "Jeffrey D. Ullman"
+                ],
+                "publisher": "Pearson",
+"pageCount": 383,
+"thumbnail": "http://books.google.com/books/content?id=KIUsQQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Elements_of_ML_Programming.html?hl=&id=KIUsQQAACAAJ"
+
+------------------------------------------------------------------------
+"title": "Programming with Standard ML",
+                "authors": [
+                    "Colin Myers",
+                    "Chris Clack",
+                    "Ellen Poon"
+                ],
+"publisher": "Prentice Hall",
+"pageCount": 301,
+"thumbnail": "http://books.google.com/books/content?id=DalQAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Programming_with_Standard_ML.html?hl=&id=DalQAAAAMAAJ"
+
+------------------------------------------------------------------------
+
+"title": "The Definition of Standard ML",
+                "subtitle": "Revised",
+                "authors": [
+                    "Robin Milner",
+                    "Mads Tofte",
+                    "Robert Harper",
+                    "David MacQueen"
+                ],
+                "publisher": "MIT Press",
+"pageCount": 114,
+"thumbnail": "http://books.google.com/books/content?id=e0PhKfbj-p8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/The_Definition_of_Standard_ML.html?hl=&id=e0PhKfbj-p8C"
+
+------------------------------------------------------------------------
+
+"title": "Apl Programming Language Family",
+                "subtitle": "A+ (Programming Language), Aplx, Apl (Codepage), Apl (Programming Language), Apl Shared Variables, Apl Syntax and Sym",
+                "authors": [
+                    "Source Wikipedia"
+                ],
+                "publisher": "University-Press.org",
+ "pageCount": 32,
+"thumbnail": "http://books.google.com/books/content?id=M-YTnwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Apl_Programming_Language_Family.html?hl=&id=M-YTnwEACAAJ"
+
+------------------------------------------------------------------------
+
+"title": "APL Programming and Computer Techniques",
+                "authors": [
+                    "Harry Katzan"
+                ],
+                "publisher": "New York : Van Nostrand Reinhold",
+"pageCount": 329,
+ "thumbnail": "http://books.google.com/books/content?id=3s8mAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/APL_Programming_and_Computer_Techniques.html?hl=&id=3s8mAAAAMAAJ"
+
+------------------------------------------------------------------
+
+ "title": "An APL Compiler",
+                "authors": [
+                    "Timothy Budd"
+                ],
+                "publisher": "Springer Science & Business Media",
+"pageCount": 156,
+"thumbnail": "http://books.google.com/books/content?id=rTb2BwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/An_APL_Compiler.html?hl=&id=rTb2BwAAQBAJ"
+
+-------------------------------------------------------------------
+
+"title": "Programming with Miranda",
+                "authors": [
+                    "Chris Clack",
+                    "Colin Myers",
+                    "Ellen Poon"
+                ],
+"publisher": "Prentice Hall",
+"pageCount": 312,
+"thumbnail": "http://books.google.com/books/content?id=x4ZQAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Programming_with_Miranda.html?hl=&id=x4ZQAAAAMAAJ"
+
+--------------------------------------------------------------------
+
+"title": "Miranda",
+                "subtitle": "The Craft of Functional Programming",
+                "authors": [
+                    "Simon Thompson"
+                ],
+                "publisher": "Addison-Wesley",
+"pageCount": 451,
+"thumbnail": "http://books.google.com/books/content?id=-35QAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Miranda.html?hl=&id=-35QAAAAMAAJ"
+
+------------------------------------------------------------------
+
+"title": "Verified Functional Programming in Agda",
+                "authors": [
+                    "Aaron Stump"
+                ],
+                "publisher": "Morgan & Claypool",
+"pageCount": 284,
+"thumbnail": "http://books.google.com/books/content?id=WkBiDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Verified_Functional_Programming_in_Agda.html?hl=&id=WkBiDwAAQBAJ"
+
+-----------------------------------------------------------------
+
+ "title": "Trends in Functional Programming",
+                "authors": [
+                    "Zoltan Horvath"
+                ],
+                "publisher": "Intellect Books",
+"pageCount": 187,
+"thumbnail": "http://books.google.com/books/content?id=2Ze2EnsCDxgC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Trends_in_Functional_Programming.html?hl=&id=2Ze2EnsCDxgC"
+
+-------------------------------------------------------------------------
+
+"title": "Theorem Proving in Higher Order Logics",
+                "subtitle": "22nd International Conference, TPHOLs 2009, Munich, Germany, August 17-20, 2009, Proceedings",
+                "authors": [
+                    "Stefan Berghofer",
+                    "Tobias Nipkow",
+                    "Christian Urban",
+                    "Makarius Wenzel"
+                ],
+                "publisher": "Springer",
+"pageCount": 517,
+"thumbnail": "http://books.google.com/books/content?id=rOVtCQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Theorem_Proving_in_Higher_Order_Logics.html?hl=&id=rOVtCQAAQBAJ"
+
+-------------------------------------------------------------------------
+"title": "Programming Erlang",
+                "subtitle": "Software for a Concurrent World",
+                "authors": [
+                    "Joe Armstrong"
+                ],
+
+"publisher": "Pragmatic Bookshelf",
+"pageCount": 520,
+ "thumbnail": "http://books.google.com/books/content?id=tAqHnQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Programming_Erlang.html?hl=&id=tAqHnQEACAAJ"
+
+------------------------------------------------------------------------
+
+"title": "Erlang Programming",
+                "subtitle": "A Concurrent Approach to Software Development",
+                "authors": [
+                    "Francesco Cesarini",
+                    "Simon Thompson"
+                ],
+                "publisher": "\"O'Reilly Media, Inc.\"",
+"pageCount": 498,
+ "thumbnail": "http://books.google.com/books/content?id=Qr_WuvfTSpEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+ "canonicalVolumeLink": "https://books.google.com/books/about/Erlang_Programming.html?hl=&id=Qr_WuvfTSpEC"
+
+-------------------------------------------------------------------------
+
+
+"title": "Introducing Erlang",
+                "subtitle": "Getting Started in Functional Programming",
+                "authors": [
+                    "Simon St. Laurent"
+                ],
+                "publisher": "\"O'Reilly Media, Inc.\"",
+"pageCount": 204,
+"thumbnail": "http://books.google.com/books/content?id=ST_joiYpV44C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+"canonicalVolumeLink": "https://books.google.com/books/about/Introducing_Erlang.html?hl=&id=ST_joiYpV44C"
+
+------------------------------------------------------------
