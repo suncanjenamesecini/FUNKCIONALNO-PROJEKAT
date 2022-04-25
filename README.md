@@ -138,50 +138,27 @@ Ovo je za tabelu languages, a za tabelu books sljedecih nekoliko primjera relaci
 | 9   | Haskell in Depth    | http://books.google.com/books/content?id=r4UxEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api   | 664 | https://books.google.com/books/about/Haskell_in_Depth.html?hl=&id=r4UxEAAAQBAJ  |  Simon and Schuster  |  2  |
 
 
-### [Part 1: Persistent](https://www.mmhaskell.com/real-world/databases) 
+### [Konekcija sa bazom: Persistent](https://hackage.haskell.org/package/persistent)
 
-The code for this part can be run pretty easily through GHCI. The main thing is you need your Postgres server to be up
-and running. You can modify the [`localConnString` variable](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/src/Database.hs#L17) in the code matches up with the settings you used. 
-The default we use is that the username, DB name, and password are all "postgres":
+Biblioteka za konekciju backend-a sa bazom je Persistent. Izabrana je zbog mnogih pozitivnih karakteristika, kao i broja preuzimanja paketa sa Hackage repozitorijuma. Nije neophodno da se koristi PostgreSQL baza uz biblioteku Persistent, već ona omogućava podršku za nekoliko najpoznatijih baza. Glavne osobine biblioteke prema autorima iste, preuzeto sa -  [Persistent :: Yesod Web Framework Book](https://www.yesodweb.com/book/persistent) :
 
-```haskell
-localConnString :: PGInfo
-localConnString = "host=127.0.0.1 port=5432 user=postgres dbname=postgres password=postgres"
-```
+> ...
+> Persistent is Yesod’s answer to data storage- a type-safe, universal data store interface for Haskell.
+>
+> Haskell has many different database bindings available. However, most of these have little knowledge of a schema and therefore do not provide useful static guarantees. They also force database-dependent APIs and data types on the programmer.
+> ...
+> In contrast, Persistent allows us to choose among existing databases that are highly tuned for different data storage use cases, interoperate with other programming languages, and to use a safe and productive query interface, while still keeping the type safety of Haskell datatypes.
+>
+> Persistent follows the guiding principles of type safety and concise, declarative syntax. Some other nice features are:
+>
+>  - Database-agnostic. There is first class support for PostgreSQL, SQLite, MySQL and MongoDB, with experimental Redis support.
+>
+>  - Convenient data modeling. Persistent lets you model relationships and use them in type-safe ways. The default type-safe persistent API does not support joins, allowing support for a wider number of storage layers. Joins and other SQL specific functionality can be achieved through using a raw SQL layer (with very little type safety). An additional library, `Esqueleto`, builds on top of the Persistent data model, adding type-safe joins and SQL functionality.
+> 
+>  - Automatic database migrations in non-production environments to speed up development.
+>
+> Persistent works well with Yesod, but it is quite usable on its own as a standalone library.
 
-Then once you load the code in GHCI, you should use the `migrateDB` expression. This will migrate your Postgres database
-so that it contains the `users` table specified in our schema! Note how you can also set your connection string here as well if it's different from our built-in.
-
-```bash
->> stack ghci
->> :l
--- (Removes all modules so there are no name conflicts)
->> import Database
->> let localConnString' = "host=127.0.0.1 port=5432 user=postgres dbname=postgres password=postgres" :: PGInfo
->> migrateDB localConnString'
-```
-Then you'll be able to start running queries using the other functions in the `Database` module
-
-```bash
->> let u = User "Kristina" "kristina@gmail.com" 45 "Software Engineer"
->> createUserPG localConnString u
-1
->> fetchUserPG localConnString 1
-Just (User {userName = "Kristina", userEmail = "kristina@gmail.com", userAge = 45, userOccupation = "Software Engineer"})
->> deleteUserPG localConnString 1
-```
-
-After each step, you can also check your Postgres database to verify that the queries went through! You can bring up
-a Postgres query terminal with the `psql` command. You can use the `-U` argument to pass your username. Then enter
-your password. And finally, you can connect to a different database with `\c`.
-
-```
->> psql -U postgres
-(enter password)
->> \c postgres
->> select * from users;
-(See the users you've created!)
-```
 
 ### [Part 2: Servant](https://www.mmhaskell.com/real-world/servant)
 
