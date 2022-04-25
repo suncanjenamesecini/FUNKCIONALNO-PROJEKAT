@@ -170,6 +170,123 @@ U fajlu `BasicSchema.hs` se nalaze funkcije za parsiranje JSON-a i prevodjenje o
 
 Za definisanje izlaznih tačaka ovog servera korišćena je biblioteka Servant. O samoj biblioteci i korišćenju detaljnije na [zvaničnom tutorijalu](https://docs.servant.dev/en/stable/tutorial/).
 
+Serveru se mogu slati HTTP-zahtjevi sa bilo kojeg klijentskog programa. Jedna od opcija je [Postman](https://postman.com). (Na ovaj način smo prvobitno popunili bazu, da bismo testirali ispravnost APIja.)
+Slanjem tih zahtjeva se lakše vidi koje funkcionalnosti obezbjeđuje naš server. Jedna od njih je dodavanje nove knjige slanjem POST zahtjeva na adresu <http://localhost:5000/books> :
+
+```bash
+POST /books
+{"title":"Web Applications with Elm",
+"thumbnail":"http://books.google.com/books/content?id=KnhqDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":140,
+"link":"https://books.google.com/books/about/Web_Applications_with_Elm.html?hl=&id=KnhqDwAAQBAJ",
+"publisher":"Apress",
+"languageId":1
+}
+
+...
+
+2
+```
+
+Dohvatanje dodate knjige:
+
+```bash
+GET /books/2
+
+...
+
+{"title":"Web Applications with Elm",
+"thumbnail":"http://books.google.com/books/content?id=KnhqDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+"pages":140,
+"link":"https://books.google.com/books/about/Web_Applications_with_Elm.html?hl=&id=KnhqDwAAQBAJ",
+"publisher":"Apress",
+"languageId":1,
+"id": 2
+}
+```
+
+Pokušaj dohvatanja nepostojeće knjige:
+
+```bash
+GET /books/110
+
+...
+
+Could not find user with that ID
+```
+
+Dohvatanje liste parova [jezik, knjiga]:
+
+```bash
+GET /books/joinJezik
+[
+  [
+    {
+      "name": "Elm",
+      "id": 1
+    },
+    {"title":"Web Applications with Elm",
+      "thumbnail":"http://books.google.com/books/content?id=KnhqDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "pages":140,
+      "link":"https://books.google.com/books/about/Web_Applications_with_Elm.html?hl=&id=KnhqDwAAQBAJ",
+      "publisher":"Apress",
+      "languageId":1,
+      "id": 2
+    }
+  ],
+  [
+    {
+      "name": "Haskell",
+      "id": 2
+    },
+    {"title":"Programming in Haskell",
+      "thumbnail":"http://books.google.com/books/content?id=75C5DAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "pages":320,
+      "link":"https://books.google.com/books/about/Programming_in_Haskell.html?hl=&id=75C5DAAAQBAJ",
+      "publisher":"Cambridge University Press",
+      "languageId":2
+    }
+  ]
+]
+```
+
+Dohvatanje liste knjiga za jedan jezik:
+
+```bash
+GET /books/elm
+[
+  {"title":"Web Applications with Elm",
+    "thumbnail":"http://books.google.com/books/content?id=KnhqDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "pages":140,
+    "link":"https://books.google.com/books/about/Web_Applications_with_Elm.html?hl=&id=KnhqDwAAQBAJ",
+    "publisher":"Apress",
+    "languageId":1,
+    "id":2
+  },
+  {"title":"Elm in Action",
+    "thumbnail":"http://books.google.com/books/content?id=rHbgDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "pages":344,
+    "link":"https://books.google.com/books/about/Elm_in_Action.html?hl=&id=rHbgDwAAQBAJ",
+    "publisher":"Manning Publications",
+    "languageId":1,
+    "id":3
+  }
+]
+
+```
+
+Brisanje knjige sa izabranim id-om:
+
+```bash
+POST /books/2
+
+...
+
+[]
+```
+Ovakav način brisanja nije najbolji i trebalo bi da se promijeni u budućnosti da se realizuje pomoću DELETE zahtjeva, i da vraća indeks knjige ili poruku ako je uspješno obrisana, a ako nije, onda poruku o tome takođe.
+Implementacija ovih funkcionalnosti je u fajlu `BasicServer.hs`.
+
 ****************************************************************************************************
 
 In this second part, we make a very basic server to expose the information in our database. Take a look at the source
