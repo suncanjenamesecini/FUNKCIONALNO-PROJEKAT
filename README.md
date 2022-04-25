@@ -91,6 +91,7 @@ Postoje dvije tabele, languages i books; u prvoj je naziv jezika jedinstven, a i
   "id":2,
   "name":"Haskell"
 }
+```
 
 | id      | name      |
 | ------- | --------- |
