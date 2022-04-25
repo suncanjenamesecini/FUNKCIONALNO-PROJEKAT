@@ -442,38 +442,38 @@ viewSearchBar model =
             { onChange = MsgInputTitleField
             , text = model.bookTitle
             , placeholder = Nothing
-            , label = EI.labelLeft [] (E.text "Title:")
+            , label = EI.labelLeft [EF.color (E.rgb255 0xEE 0xEE 0xEE)] (E.text "Title:")
             }
         , EI.search []
             { onChange = MsgInputThumbnailField
             , text = model.bookThumbnail
             , placeholder = Nothing
-            , label = EI.labelLeft [] (E.text "Thumbnail:")
+            , label = EI.labelLeft [EF.color (E.rgb255 0xEE 0xEE 0xEE)] (E.text "Thumbnail:")
             }
         , EI.search []
             { onChange = MsgInputPagesFieldAsString
             , text = (String.fromInt model.bookPages)   --PROMENITI DA MOZE MAYBE INT 
             , placeholder = Nothing
-            , label = EI.labelLeft [] (E.text "Pages:")
+            , label = EI.labelLeft [EF.color (E.rgb255 0xEE 0xEE 0xEE)] (E.text "Pages:")
             }
         
         , EI.search []
         { onChange = MsgInputLinkField
         , text = model.bookLink
         , placeholder = Nothing
-        , label = EI.labelLeft [] (E.text "Link:")
+        , label = EI.labelLeft [EF.color (E.rgb255 0xEE 0xEE 0xEE)] (E.text "Link:")
         }
         , EI.search []
             { onChange = MsgInputPublisherField
             , text = model.bookPublisher
             , placeholder = Nothing
-            , label = EI.labelLeft [] (E.text "Publisher:")
+            , label = EI.labelLeft [EF.color (E.rgb255 0xEE 0xEE 0xEE)] (E.text "Publisher:")
             }
         , EI.search []
             { onChange = MsgInputLanguageIdFieldAsString
             , text = (String.fromInt model.bookLanguageId)   --PROMENITI DA MOZE MAYBE INT
             , placeholder = Nothing
-            , label = EI.labelLeft [] (E.text "Language Id:")
+            , label = EI.labelLeft [EF.color (E.rgb255 0xEE 0xEE 0xEE)] (E.text "Language Id:")
             }
         
         , viewAddBookButton
@@ -483,13 +483,13 @@ viewSearchBar model =
             { onChange = MsgInputIdFieldAsString
             , text = (String.fromInt model.bookId)   --PROMENITI DA MOZE MAYBE INT
             , placeholder = Nothing
-            , label = EI.labelLeft [] (E.text "Book Id:")
+            , label = EI.labelLeft [EF.color (E.rgb255 0xEE 0xEE 0xEE)] (E.text "Book Id:")
             }
         , viewDeleteBookButton
          , viewShowBookButton
         
      ],
-    E.row [ E.spacing 7, E.paddingXY 0 5 ]
+    E.row [ E.spacing 2, E.paddingXY 0 5 ]
         [ 
          viewGetBooksButton
         , viewGetBooksElmButton
@@ -665,10 +665,10 @@ viewDeleteBookButton : E.Element Msg
 viewDeleteBookButton = viewButtonGeneric "Delete Book" MsgDeleteBook
 
 viewShowBookButton : E.Element Msg
-viewShowBookButton = viewButtonGeneric "Get book from Id" MsgShowBook
+viewShowBookButton = viewButtonGeneric "Get book by Id" MsgShowBook
 
 viewGetBooksButton : E.Element Msg
-viewGetBooksButton = viewButtonGeneric "All Books" MsgGetBooks
+viewGetBooksButton = viewButtonGeneric "All" MsgGetBooks
 
 viewGetBooksElmButton : E.Element Msg
 viewGetBooksElmButton = viewButtonGeneric "Elm" MsgGetBooksElm
@@ -698,7 +698,7 @@ viewGetBooksSchemeButton : E.Element Msg
 viewGetBooksSchemeButton = viewButtonGeneric "Scheme" MsgGetBooksScheme
 
 viewGetBooksLispButton : E.Element Msg
-viewGetBooksLispButton = viewButtonGeneric "Lips" MsgGetBooksLisp
+viewGetBooksLispButton = viewButtonGeneric "Lisp" MsgGetBooksLisp
 
 viewGetBooksMLButton : E.Element Msg
 viewGetBooksMLButton = viewButtonGeneric "ML" MsgGetBooksML
@@ -716,7 +716,7 @@ viewGetBooksErlangButton : E.Element Msg
 viewGetBooksErlangButton = viewButtonGeneric "Erlang" MsgGetBooksErlang
 
 viewGetBooksLargestButton : E.Element Msg
-viewGetBooksLargestButton = viewButtonGeneric "10 Largest books" MsgGetBooksLargest
+viewGetBooksLargestButton = viewButtonGeneric "10 Largest" MsgGetBooksLargest
 
 
 --NE KORISTIM OVAJ, ZBOG HEDERA NEODGOVARAJUCIH ZA MOJ SERVER
