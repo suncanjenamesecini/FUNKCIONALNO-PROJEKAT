@@ -10,6 +10,8 @@ Aplikacija se zove `Katalog knjiga o funkcionalnim jezicima` i pruža mogućnost
 
 Naredni dio ovog teksta, za server koji je rađen u Haskelu, je preuzet i prilagodjen sa:  [https://github.com/MondayMorningHaskell/RealWorldHaskell#readme](https://github.com/MondayMorningHaskell/RealWorldHaskell#readme). Ostavljeni su dijelovi koji su korišćeni kao primjer i osnova, a to su prvi, drugi i peti dio, a proširen je tekst u nekim dijelovima, jer je i kod aplikacije opširniji od ovog koji je služio  kao polazna tačka i referenca. Prema tome, preporuke za blog autora, gdje je sve još detaljnije objašnjeno [Real World Haskell](https://www.mmhaskell.com/real-world)
 
+*******************************************************
+
 ## Instalacija neophodnog
 
 ### Postgresql
@@ -284,143 +286,32 @@ POST /books/2
 
 []
 ```
-Ovakav način brisanja nije najbolji i trebalo bi da se promijeni u budućnosti da se realizuje pomoću DELETE zahtjeva, i da vraća indeks knjige ili poruku ako je uspješno obrisana, a ako nije, onda poruku o tome takođe.
+Ovakav način brisanja nije najbolji i trebalo bi da se promijeni u budućnosti, da se realizuje pomoću DELETE zahtjeva, i da vraća indeks knjige ili poruku ako je uspješno obrisana, a ako nije, onda poruku o tome takođe.
 Implementacija ovih funkcionalnosti je u fajlu `BasicServer.hs`.
+
+### [Složeniji upiti i realizacija JOIN-a Esqueleto](https://hackage.haskell.org/package/esqueleto)
+
+Kako Persistent ne omogućuje JOIN-e, dodana je i ova biblioteka. Primjer funkcije iz fajla `Database.hs`:
+
+```haskell
+fetchRecentBooksPG :: PGInfo -> IO [(Entity Language , Entity Book)]
+fetchRecentBooksPG connString = runAction connString fetchAction
+  where
+    fetchAction :: SqlPersistT (LoggingT IO) [(Entity Language, Entity Book)]
+    fetchAction = select . from $ \(languages `InnerJoin` books) -> do
+      on (languages ^. LanguageId  ==. books ^. BookLanguageId)
+      orderBy [desc (books ^. BookPages)]
+      limit 10
+      return (languages, books)
+```
+
+Ova funkcija realizuje prethodno navedeni upit GET /books/joinJezik. Detaljnije o biblioteci na [link](https://github.com/bitemyapp/esqueleto).
+
+### [Logovanje: monad-logger ](https://hackage.haskell.org/package/monad-logger)
+
+Za logovanje informacija korišćena je biblioteka `monad-loger` u fajlu `Database.hs`.
+
 
 ****************************************************************************************************
 
-In this second part, we make a very basic server to expose the information in our database. Take a look at the source
-[in this module](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/src/BasicServer.hs).
-
-
-
-Now you can make HTTP requests to your server from any client program. My favorite is [Postman](https://postman.com).
-Then you can follow the same pattern you did in the first part. Try creating a user:
-
-```bash
-POST /users
-{
-  "name": "Kristina",
-  "email": "kristina@gmail.com",
-  "age": 45,
-  "occupation": "Software Engineer"
-}
-
-...
-
-2
-```
-
-Then try fetching it:
-
-```bash
-GET /users/2
-
-...
-
-{
-  "name": "Kristina",
-  "email": "kristina@gmail.com",
-  "age": 45,
-  "occupation": "Software Engineer"
-}
-```
-
-You can also try fetching invalid users!
-
-```bash
-GET /users/45
-
-...
-
-Could not find user with that ID
-```
-
-### [Part 5: Esqueleto](https://www.mmhaskell.com/real-world/esqueleto)
-
-In part 5, we add a new type to our schema, this time incorporating a foreign key relation. This part has its own
-distinct set of modules to avoid conflicts with the code from the first 4 parts:
-
-1. [New Schema Module](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/src/SchemaEsq.hs)
-2. [New Database Library](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/src/DatabaseEsq.hs)
-3. [Updated Server](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/src/ServerEsq.hs) (this server does not have any Redis caching)
-4. [Sample Objects](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/src/SampleObjects.hs) (for database insertion)
-
-To try out this code, you should start by running a new migration on your database:
-
-```bash
->> stack exec migrate-db -- esq
-```
-
-This will add the `articles` table, but it should leave the `users` table unaffected, so it shouldn't cause any
-problems with your original code.
-
-Next you can update the database in a couple different ways. First, as with the first part, you can open up GHCI and
-try running the insertions for yourself. In the `SampleObjects` module, we've provided a set of objects you can use
-as sample database items. The `User` objects are fine on their own, but the `Article` objects require you to pass in
-the integer ID of the User after they've been created. For example:
-
-```bash
->> stack ghci
->> :l
->> :load DatabaseEsq SampleObjects
->> import SampleObjects
->> createUserPG localConnString testUser1
-5
->> createArticlePG localConnString (testArticle1 5)
-1
->> fetchRecentArticles
-[(Entity {entityKey = SqlBackendKey 5, entityVal = User {...}}, Entity {entityKey = SqlBackendKey 1, entityVal = Article {...}})]
-```
-
-The other way to do this is to use the API via the server. Start by running the updated server:
-
-```bash
->> stack exec run-server -- esq
-```
-
-And then you can make your requests, via Postman or whatever service you use:
-
-```bash
-POST /users
-{
-  "name": "Kristina",
-  "email": "kristina@gmail.com",
-  "age": 45,
-  "occupation": "Software Engineer"
-}
-
-5
-
-POST /articles
-
-{
-  "title": "First Post",
-  "body": "A great description of our first blog post body.",
-  "publishedTime": 1498914000,
-  "authorId": 5
-}
-
-1
-
-GET /articles/recent
-[
-  [
-    {
-      "name": "Kristina",
-      "email": "kristina@gmail.com",
-      "age": 45,
-      "occupation": "Software Engineer",
-      "id": 5
-    },
-    {
-      "title": "First Post",
-      "body": "A great description of our first blog post body.",
-      "publishedTime": 1498914000,
-      "authorId": 5,
-      "id": 1
-    }
-  ]
-]
-```
-
+To je to što se tiče serverske strane aplikacije, naredni dio je posvećen klijentskom dijelu.
