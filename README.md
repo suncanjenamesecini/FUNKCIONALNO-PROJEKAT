@@ -541,5 +541,7 @@ I za kraj, dodatne reference:
 
  - Primjeri u elmu: [Examples](https://elm-lang.org/examples) i [github repozitorijum sa kodom sa kursa](https://github.com/csaltos/elm-the-complete-guide).
 
+ - Repozitorijumom sa paketima za jezik Elm: [Elm Packages](https://package.elm-lang.org/).
+
  - Blog sa primjerom TODO aplikacije: [Elm: Functional Frontend](https://mmhaskell.com/elm).
 
