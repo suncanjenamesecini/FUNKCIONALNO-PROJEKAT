@@ -289,7 +289,7 @@ POST /books/2
 Ovakav način brisanja nije najbolji i trebalo bi da se promijeni u budućnosti, da se realizuje pomoću DELETE zahtjeva, i da vraća indeks knjige ili poruku ako je uspješno obrisana, a ako nije, onda poruku o tome takođe.
 Implementacija ovih funkcionalnosti je u fajlu `BasicServer.hs`.
 
-### [Složeniji upiti i realizacija JOIN-a Esqueleto](https://hackage.haskell.org/package/esqueleto)
+### [Složeniji upiti i realizacija JOIN-a: Esqueleto](https://hackage.haskell.org/package/esqueleto)
 
 Kako Persistent ne omogućuje JOIN-e, dodana je i ova biblioteka. Primjer funkcije iz fajla `Database.hs`:
 
@@ -315,3 +315,45 @@ Za logovanje informacija korišćena je biblioteka `monad-loger` u fajlu `Databa
 ****************************************************************************************************
 
 To je to što se tiče serverske strane aplikacije, naredni dio je posvećen klijentskom dijelu.
+Klijent je pisan u jeziku Elm, namijenjenom za frontend. Hvale ga zbog dizajna kompajlera i vrlo korisnih poruka o greškama. Takođe, autori JS biblioteke [Redux](https://redux.js.org/) kažu da im je inspiracija bila Elm arhitektura. Ova biblioteka se inače koristi u paru sa bibliotekom React, jednom od najpopularnijih frontend JS biblioteka. Detaljnije o jeziku na zvaničnom tutorijalu - [An Introduction to Elm](https://guide.elm-lang.org/). Autor jezika Elm o prednosti korišćenja funkcionalnog jezika za frontend:
+
+>  ### Why a functional language?
+>
+> You can get some benefits from programming in a functional style, but there are some things you can only get from a functional language like Elm:
+>
+>  - No runtime errors in practice.
+>  - Friendly error messages.
+>  - Reliable refactoring.
+>  - Automatically enforced semantic versioning for all Elm packages.
+> No combination of JS libraries can give you all of these guarantees. They come from the design of the language itself! And thanks to these guarantees, it is quite common for Elm programmers to say they never felt so confident while programming. Confident to add features quickly. Confident to refactor thousands of lines. But without the background anxiety that you missed something important!
+>
+> I have put a huge emphasis on making Elm easy to learn and use, so all I ask is that you give Elm a shot and see what you think. I hope you will be pleasantly surprised!
+
+## Instalacija neophodnog
+
+### Node.js
+
+Ovaj jezik se kompajlira u JavaScript, pa je potrebno imati Node.js instaliran -  [instalacija](https://nodejs.org/en/download/).
+
+### Elm jezik i paketi
+
+Nakon instalcije Node.js, zbog korišenja npm menadžera JS paketa, intalirati Elm prateći [uputstvo](https://guide.elm-lang.org/install/elm.html).
+Nakon toga instalirati pakete koji se koriste u projektu:
+
+```bash
+>> elm install elm/http
+>> elm install elm/json
+>> elm install elm/svg
+>> elm install mdgriffith/elm-ui
+```
+
+Paketi za sinhronizaciju pikaza i koda za vrijeme razvoja, kao i za formatiranje elm koda:
+
+
+
+
+## Pokretanje klijenta
+
+```bash
+>> npx elm-live src/Main.elm
+```
