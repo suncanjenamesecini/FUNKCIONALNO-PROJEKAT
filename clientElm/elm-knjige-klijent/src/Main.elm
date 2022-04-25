@@ -506,7 +506,7 @@ viewSearchBar model =
                 }
             , viewAddBookButton
             ]
-        , E.row [ E.spacing 10, E.centerX, E.paddingXY 420 30, EBG.color (E.rgb255 0x33 0x66 0x99) ]
+        , E.row [ E.spacing 10, E.centerX, E.paddingXY 470 30, EBG.color (E.rgb255 0x33 0x66 0x99) ]
             [ EI.search []
                 { onChange = MsgInputIdFieldAsString
                 , text = String.fromInt model.bookId --PROMENITI DA MOZE MAYBE INT
@@ -704,7 +704,7 @@ viewShowBookButton =
 
 viewGetBooksButton : E.Element Msg
 viewGetBooksButton =
-    viewButtonGeneric "All" MsgGetBooks
+    viewButtonGeneric "All Books" MsgGetBooks
 
 
 viewGetBooksElmButton : E.Element Msg
@@ -784,7 +784,7 @@ viewGetBooksErlangButton =
 
 viewGetBooksLargestButton : E.Element Msg
 viewGetBooksLargestButton =
-    viewButtonGeneric "10 Largest" MsgGetBooksLargest
+    viewButtonGeneric "10 Largest Books" MsgGetBooksLargest
 
 
 
