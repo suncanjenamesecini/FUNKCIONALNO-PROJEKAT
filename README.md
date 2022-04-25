@@ -162,22 +162,20 @@ Biblioteka za konekciju backend-a sa bazom je Persistent. Izabrana je zbog mnogi
 > Persistent works well with Yesod, but it is quite usable on its own as a standalone library.
 
 
-### [Part 2: Servant](https://www.mmhaskell.com/real-world/servant)
+### [Pretvaranje Haskell tipova u JSON i obrnuto: Aeson](https://hackage.haskell.org/package/aeson)
+
+U fajlu `BasicSchema.hs` se nalaze funkcije za parsiranje JSON-a i prevodjenje odgovarajuce JSON objekta u Haskell-ove tipove Book i Language i obrnuto, koje koriste biblioteku Aeson.
+
+### [Server i API: Servant](https://hackage.haskell.org/package/servant)
+
+Za definisanje izlaznih tačaka ovog servera korišćena je biblioteka Servant. O samoj biblioteci i korišćenju detaljnije na [zvaničnom tutorijalu](https://docs.servant.dev/en/stable/tutorial/).
+
+****************************************************************************************************
 
 In this second part, we make a very basic server to expose the information in our database. Take a look at the source
 [in this module](https://github.com/MondayMorningHaskell/RealWorldHaskell/blob/master/src/BasicServer.hs).
 
-To run this server, first make your database is migrated, if you didn't do that in part 1:
 
-```bash
->> stack exec migrate-db
-```
-
-Then you can run the server with this executable:
-
-```bash
->> stack exec run-server
-```
 
 Now you can make HTTP requests to your server from any client program. My favorite is [Postman](https://postman.com).
 Then you can follow the same pattern you did in the first part. Try creating a user:
