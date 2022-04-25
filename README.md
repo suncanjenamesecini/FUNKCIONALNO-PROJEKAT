@@ -338,6 +338,7 @@ Ovaj jezik se kompajlira u JavaScript, pa je potrebno imati Node.js instaliran -
 ### Elm jezik i paketi
 
 Nakon instalcije Node.js, zbog korišenja npm menadžera JS paketa, intalirati Elm prateći [uputstvo](https://guide.elm-lang.org/install/elm.html).
+Ekstenzija za VS Code za podrsku jeziku Elm:  [Elm](https://marketplace.visualstudio.com/items?itemName=Elmtooling.elm-ls-vscode).
 Nakon toga instalirati pakete koji se koriste u projektu:
 
 ```bash
@@ -359,6 +360,8 @@ Paketi za sinhronizaciju pikaza i koda za vrijeme razvoja, kao i za formatiranje
 >> npx elm-live src/Main.elm
 ```
 
+Kako server nema 
+
 Funkcija u elm jeziku
 
 ```elm
@@ -367,3 +370,23 @@ updateAddBook model =
     ( { model | loading = True }, postBooks model ) 
 ```
 
+
+## Pisanje dokumentacije
+
+Ova dokumentacija je pisana korišćenjem jezika za formatiranje pod nazivom Markdown. Sintaksa i detaljnije na [Markdown Guide](https://www.markdownguide.org/getting-started/).
+Za pretvaranje .md fajla u PDF je korišćena ekstenzija u VSCode editoru pod nazivom [Markdown PDF](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf). Nakon dodavanja u VSCode editor, vrlo jednostavno se koristi:
+
+>  1. Open the Markdown file
+>  2. Press F1 or Ctrl+Shift+P
+>  3. Type export and select below
+>     - markdown-pdf: Export (settings.json)
+>     - markdown-pdf: Export (pdf)
+>     - markdown-pdf: Export (html)
+>     - markdown-pdf: Export (png)
+>     - markdown-pdf: Export (jpeg)
+>     - markdown-pdf: Export (all: pdf, html, png, jpeg)
+
+
+## Kod aplikacije
+
+I za kraj, link na kojem se nalazi kod aplikacije na github-u: [https://github.com/suncanjenamesecini/FUNKCIONALNO-PROJEKAT](https://github.com/suncanjenamesecini/FUNKCIONALNO-PROJEKAT).
