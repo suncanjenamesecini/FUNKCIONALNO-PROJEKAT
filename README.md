@@ -139,9 +139,9 @@ Ovo je za tabelu languages, a za tabelu books sljedecih nekoliko primjera relaci
 
 |  id      | title      | thumbnail | pages   | link   | publisher  | languageId |
 | --------- | ----------- | -------- | -------- | ------ | --------- | ---------- |
-| 2   |  Web Applications with Elm  | http://books.google.com/books/content?id=KnhqDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api  | 140  | https://books.google.com/books/about/Web_Applications_with_Elm.html?hl=&id=KnhqDwAAQBAJ    |  Apress     |  1    |
-| 8   | Programming in Haskell   |  http://books.google.com/books/content?id=75C5DAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api   | 320  | https://books.google.com/books/about/Programming_in_Haskell.html?hl=&id=75C5DAAAQBAJ    | Cambridge University Press  | 2  |
-| 9   | Haskell in Depth    | http://books.google.com/books/content?id=r4UxEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api   | 664 | https://books.google.com/books/about/Haskell_in_Depth.html?hl=&id=r4UxEAAAQBAJ  |  Simon and Schuster  |  2  |
+| 2   |  Web Applications with Elm  | http://books.google.com/books/content?id=Knh...  | 140  | https://books.google.com/books/about/We_...    |  Apress     |  1    |
+| 8   | Programming in Haskell   |  http://books.google.com/books/content?id=7...  | 320  | https://books.google.com/books/about/Program...    | Cambridge University Press  | 2  |
+| 9   | Haskell in Depth    | http://books.google.com/books/content?id=r4Ux...   | 664 | https://books.google.com/books/about/Haskell_in_D...  |  Simon and Schuster  |  2  |
 
 
 ### [Konekcija sa bazom: Persistent](https://hackage.haskell.org/package/persistent)

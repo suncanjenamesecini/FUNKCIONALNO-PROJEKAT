@@ -795,8 +795,8 @@ cmdAddBook : Model -> Cmd Msg
 cmdAddBook model =
     Http.request
         { method = "POST"
-        , headers = [ header "Access-Control-Allow-Origin" "http://localhost:8080", header "Access-Control-Allow-Credentials" "true", header "Content-Type" "application/json" ]
-        , url = "http://localhost:8080/books"
+        , headers = [ header "Access-Control-Allow-Origin" "http://localhost:5000", header "Access-Control-Allow-Credentials" "true", header "Content-Type" "application/json" ]
+        , url = "http://localhost:5000/books"
         , body = jsonBody (encode model)
         , expect = Http.expectWhatever MsgSuccesfulPost
         , timeout = Nothing
@@ -807,7 +807,7 @@ cmdAddBook model =
 postBooks : Model -> Cmd Msg
 postBooks model =
     Http.post
-        { url = "http://localhost:8080/books"
+        { url = "http://localhost:5000/books"
         , body = jsonBody (encode model)
         , expect = Http.expectWhatever MsgSuccesfulPost
         }
@@ -816,7 +816,7 @@ postBooks model =
 cmdDeleteBook : Model -> Cmd Msg
 cmdDeleteBook model =
     Http.post
-        { url = "http://localhost:8080/books/" ++ String.fromInt model.bookId
+        { url = "http://localhost:5000/books/" ++ String.fromInt model.bookId
         , body = emptyBody
         , expect = Http.expectWhatever MsgSuccessfulDelete
         }
@@ -825,7 +825,7 @@ cmdDeleteBook model =
 cmdShowBook : Model -> Cmd Msg
 cmdShowBook model =
     Http.get
-        { url = "http://localhost:8080/books/" ++ String.fromInt model.bookId
+        { url = "http://localhost:5000/books/" ++ String.fromInt model.bookId
         , expect = Http.expectJson MsgGotResult (JD.maybe decodeItem)
         }
 
@@ -833,7 +833,7 @@ cmdShowBook model =
 cmdSearchAll : Cmd Msg
 cmdSearchAll =
     Http.get
-        { url = "http://localhost:8080/books/sve"
+        { url = "http://localhost:5000/books/sve"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -841,7 +841,7 @@ cmdSearchAll =
 cmdSearchElm : Cmd Msg
 cmdSearchElm =
     Http.get
-        { url = "http://localhost:8080/books/elm"
+        { url = "http://localhost:5000/books/elm"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -849,7 +849,7 @@ cmdSearchElm =
 cmdSearchHaskell : Cmd Msg
 cmdSearchHaskell =
     Http.get
-        { url = "http://localhost:8080/books/haskell"
+        { url = "http://localhost:5000/books/haskell"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -857,7 +857,7 @@ cmdSearchHaskell =
 cmdSearchElixir : Cmd Msg
 cmdSearchElixir =
     Http.get
-        { url = "http://localhost:8080/books/elixir"
+        { url = "http://localhost:5000/books/elixir"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -865,7 +865,7 @@ cmdSearchElixir =
 cmdSearchFsharp : Cmd Msg
 cmdSearchFsharp =
     Http.get
-        { url = "http://localhost:8080/books/fsharp"
+        { url = "http://localhost:5000/books/fsharp"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -873,7 +873,7 @@ cmdSearchFsharp =
 cmdSearchClojure : Cmd Msg
 cmdSearchClojure =
     Http.get
-        { url = "http://localhost:8080/books/clojure"
+        { url = "http://localhost:5000/books/clojure"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -881,7 +881,7 @@ cmdSearchClojure =
 cmdSearchOcaml : Cmd Msg
 cmdSearchOcaml =
     Http.get
-        { url = "http://localhost:8080/books/ocaml"
+        { url = "http://localhost:5000/books/ocaml"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -889,7 +889,7 @@ cmdSearchOcaml =
 cmdSearchScala : Cmd Msg
 cmdSearchScala =
     Http.get
-        { url = "http://localhost:8080/books/scala"
+        { url = "http://localhost:5000/books/scala"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -897,7 +897,7 @@ cmdSearchScala =
 cmdSearchRacket : Cmd Msg
 cmdSearchRacket =
     Http.get
-        { url = "http://localhost:8080/books/racket"
+        { url = "http://localhost:5000/books/racket"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -905,7 +905,7 @@ cmdSearchRacket =
 cmdSearchScheme : Cmd Msg
 cmdSearchScheme =
     Http.get
-        { url = "http://localhost:8080/books/scheme"
+        { url = "http://localhost:5000/books/scheme"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -913,7 +913,7 @@ cmdSearchScheme =
 cmdSearchLisp : Cmd Msg
 cmdSearchLisp =
     Http.get
-        { url = "http://localhost:8080/books/lisp"
+        { url = "http://localhost:5000/books/lisp"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -921,7 +921,7 @@ cmdSearchLisp =
 cmdSearchML : Cmd Msg
 cmdSearchML =
     Http.get
-        { url = "http://localhost:8080/books/ml"
+        { url = "http://localhost:5000/books/ml"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -929,7 +929,7 @@ cmdSearchML =
 cmdSearchAPL : Cmd Msg
 cmdSearchAPL =
     Http.get
-        { url = "http://localhost:8080/books/apl"
+        { url = "http://localhost:5000/books/apl"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -937,7 +937,7 @@ cmdSearchAPL =
 cmdSearchMiranda : Cmd Msg
 cmdSearchMiranda =
     Http.get
-        { url = "http://localhost:8080/books/miranda"
+        { url = "http://localhost:5000/books/miranda"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -945,7 +945,7 @@ cmdSearchMiranda =
 cmdSearchAgda : Cmd Msg
 cmdSearchAgda =
     Http.get
-        { url = "http://localhost:8080/books/agda"
+        { url = "http://localhost:5000/books/agda"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -953,7 +953,7 @@ cmdSearchAgda =
 cmdSearchErlang : Cmd Msg
 cmdSearchErlang =
     Http.get
-        { url = "http://localhost:8080/books/erlang"
+        { url = "http://localhost:5000/books/erlang"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
@@ -961,7 +961,7 @@ cmdSearchErlang =
 cmdSearchLargest : Cmd Msg
 cmdSearchLargest =
     Http.get
-        { url = "http://localhost:8080/books/join"
+        { url = "http://localhost:5000/books/join"
         , expect = Http.expectJson MsgGotResults decodeItems
         }
 
