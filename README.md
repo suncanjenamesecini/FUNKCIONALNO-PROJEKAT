@@ -405,7 +405,7 @@ initModel =
     , errorMessage = Nothing
     , loading = False
     }
-```elm
+```
 
 On služi za generisanje View-a; razne interakcije klijenta sa view-om uzrokuju slanje poruka, koje su prvobitno definisane kao tip Msg.
 Te poruke se prosljeđuju funkciji update koja u zavisnosti od poruka update-uje polazni podel.
