@@ -146,7 +146,9 @@ Biblioteka za konekciju backend-a sa bazom je Persistent. Izabrana je zbog mnogi
 > Persistent is Yesod’s answer to data storage- a type-safe, universal data store interface for Haskell.
 >
 > Haskell has many different database bindings available. However, most of these have little knowledge of a schema and therefore do not provide useful static guarantees. They also force database-dependent APIs and data types on the programmer.
+>
 > ...
+>
 > In contrast, Persistent allows us to choose among existing databases that are highly tuned for different data storage use cases, interoperate with other programming languages, and to use a safe and productive query interface, while still keeping the type safety of Haskell datatypes.
 >
 > Persistent follows the guiding principles of type safety and concise, declarative syntax. Some other nice features are:
