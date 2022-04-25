@@ -349,11 +349,21 @@ Nakon toga instalirati pakete koji se koriste u projektu:
 
 Paketi za sinhronizaciju pikaza i koda za vrijeme razvoja, kao i za formatiranje elm koda:
 
-
-
+```bash
+>> npm install -g elm-test elm-format elm-review
+```
 
 ## Pokretanje klijenta
 
 ```bash
 >> npx elm-live src/Main.elm
 ```
+
+Funkcija u elm jeziku
+
+```elm
+updateAddBook : Model -> (Model, Cmd Msg)
+updateAddBook model =
+    ( { model | loading = True }, postBooks model ) 
+```
+
