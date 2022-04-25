@@ -1,5 +1,9 @@
 # FUNKCIONALNO-PROJEKAT
 
+*Autor: Milica Babić*
+
+*[link](https://github.com/suncanjenamesecini/FUNKCIONALNO-PROJEKAT) ka repozitorijumu sa kodom aplikacije na github-u*
+
 Ovo je prikaz i opis web-aplikacije koju smo radili za projekat iz Funkcionalnog programiranja. Zadatak nam je bio realizovati web-aplikaciju u čisto funkcionalnim jezicima, a prvenstveno u Haskelu, koji smo radili i na nastavi. Ova aplikacija se sastoji iz dva dijela, klijent i server, koji komuniciraju preko http-zahtjeva i odgovora, a pri tom podaci su uglavnom prenošeni u obliku JSON-a, u body elementu http-zahtjeva ili odgovora. Klijent je realizovan u jeziku za frontend pod nazivom Elm, o kojem ce biti više riječi kasnije. Server je realizovan u Haskellu, koristeći PostgreSQL bazu podataka i Servant biblioteku za izradu servera i API-ja. Za konekciju sa bazom koristi se biblioteka Persistent, koja omogućava ORM (object-relational mapping), tj. ekvivalentan koncept u funkcionalnim jezicima. Ta biblioteka takođe omogućava jednostavnije upite u obliku funkcija kao što su get, insert, delete, čijom se upotrebom smanjuje potreba za pisanjem čistog SQL koda od strane programera, pa prema tome se smanjuje mogućnost napada kao što su SQL injection. Druga biblioteka koričćena za pisanje upita je Esqueleto. Ona omogućava pisanje složenijih upita kao što su JOIN-i dvije ili više tabela, WHERE upiti i slično.
 
 Ove tehnologije i struktura aplikacije su izabrani zbog iskustva u izradi web-aplikacija kod kojih je React korišćen za frontend, a Node.js za backend; frontend je prema tome SPA (single-page application), a backend je RESTful API. Izradom ovog projekta se uočavaju prednosti i mane korišćenja funkcionalnih jezika, dok je sama arhitektura aplikacije ista kao u standardnim PERN aplikacijama (PostgreSQL+Express+React+Node.js).
@@ -408,7 +412,7 @@ initModel =
 ```
 
 On služi za generisanje View-a; razne interakcije klijenta sa view-om uzrokuju slanje poruka, koje su prvobitno definisane kao tip Msg.
-Te poruke se prosljeđuju funkciji update koja u zavisnosti od poruka update-uje polazni podel.
+Te poruke se prosljeđuju funkciji update koja u zavisnosti od poruka update-uje polazni model.
 Takođe, poruke tipa Msg može generisati dobijanje odgovora od servera, pa i na njih adekvatno reaguje update funkcija.
 
 ![Elm Arhitektura, slika 1](https://github.com/suncanjenamesecini/FUNKCIONALNO-PROJEKAT/blob/main/slike/elm-architecture1.jpg?raw=true)
@@ -440,7 +444,7 @@ Neke od osobina, prema autorima:
 >  - **Layout and style are explicit and easy to modify.** CSS and HTML as tools for a layout language are hard to modify because there's no central place that represents your layout. You're generally forced to bounce back and forth between multiple definitions in multiple files in order to adjust layout, even though it's probably the most common thing you'll do.
 
 
-### [Paket za slanje zahtjeva:http ](https://package.elm-lang.org/packages/elm/http/latest/Http#expectStringResponse)
+### [Paket za slanje zahtjeva: http ](https://package.elm-lang.org/packages/elm/http/latest/Http#expectStringResponse)
 
 Primjer funkcije u našem kodu gdje se šalje GET zahtjev:
 
@@ -509,7 +513,7 @@ encode model =
     ] 
 ```
 
-### [Paket crtanje i prikaz Scalable vector graphics (SVG): svg ](https://package.elm-lang.org/packages/elm/svg/latest/)
+### [Paket za crtanje i prikaz Scalable vector graphics (SVG): svg ](https://package.elm-lang.org/packages/elm/svg/latest/)
 
 
 ## Pisanje dokumentacije
@@ -528,6 +532,14 @@ Za pretvaranje .md fajla u PDF je korišćena ekstenzija u VSCode editoru pod na
 >     - markdown-pdf: Export (all: pdf, html, png, jpeg)
 
 
-## Kod aplikacije
+## Dodatne reference
 
-I za kraj, link ka repozitorijumu sa kodom aplikacije na github-u: [https://github.com/suncanjenamesecini/FUNKCIONALNO-PROJEKAT](https://github.com/suncanjenamesecini/FUNKCIONALNO-PROJEKAT).
+I za kraj, dodatne reference:
+
+ - Za izradu klijenta veoma mi je koristio kurs: [Elm - The Complete Guide (a web development video tutorial)](https://www.udemy.com/course/elm-the-complete-guide/?referralCode=C7120849E19E4866E9C3).
+ - Za slike vezane za Elm arhitekturu videi: [Developer Happiness on the Front End with Elm](https://www.youtube.com/watch?v=kuOCx0QeQ5c) i [Elm crash course - Building unbreakable webapps fast](https://www.youtube.com/watch?v=kEitFAY7Gc8).
+
+ - Primjeri u elmu: [Examples](https://elm-lang.org/examples) i [github repozitorijum sa kodom sa kursa](https://github.com/csaltos/elm-the-complete-guide).
+
+ - Blog sa primjerom TODO aplikacije: [Elm: Functional Frontend](https://mmhaskell.com/elm).
+
