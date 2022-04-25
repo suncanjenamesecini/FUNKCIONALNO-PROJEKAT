@@ -348,10 +348,10 @@ Nakon toga instalirati pakete koji se koriste u projektu:
 >> elm install mdgriffith/elm-ui
 ```
 
-Paketi za sinhronizaciju pikaza i koda za vrijeme razvoja, kao i za formatiranje elm koda:
+Paketi za sinhronizaciju prikaza i koda za vrijeme razvoja, kao i za formatiranje elm koda:
 
 ```bash
->> npm install -g elm-test elm-format elm-review
+>> npm install -g elm-test elm-format elm-review elm-live
 ```
 
 ## Pokretanje klijenta
@@ -360,15 +360,156 @@ Paketi za sinhronizaciju pikaza i koda za vrijeme razvoja, kao i za formatiranje
 >> npx elm-live src/Main.elm
 ```
 
-Kako server nema 
+Klijent se nalazi na <http://localhost:8000/>, ali ako bi se samo ovako otvorio browser, javljala bi se [CORS](https://web.dev/cross-origin-resource-sharing/?utm_source=devtools) greška, zato što server ne sadrži funkcije za njeno otklanjanje, što bi trebalo definitivno dodati u budućnosti. Zbog toga zatvoriti Google Chrome i ponovo ga otvoriti iz komandne linije komandom (na Windows operativnom sistemu):
 
-Funkcija u elm jeziku
+```bash
+>> "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security
+```
+
+Sad u tako otvorenom browseru sa onemogućenim sigurnosnim flag-ovima, otvoriti <http://localhost:8000/>.
+
+Elm arhitektura je varijacija na MVC stil, tako da moramo imati definisan Model:
+
+```elm
+type alias Model =
+    { bookTitle : String
+    , bookThumbnail : String
+    , bookPages : Int
+    , bookLink : String
+    , bookPublisher : String
+    , bookLanguageId : Int
+    , bookId : Int 
+    , poruka : String
+    , results : List Book
+    , resultBook : Maybe Book
+    , errorMessage : Maybe String
+    , loading : Bool
+    }
+```
+
+Početni model:
+
+```elm
+initModel : Model
+initModel =
+    { bookTitle = ""
+    , bookThumbnail = ""
+    , bookPages = 0 
+    , bookLink = ""
+    , bookPublisher = ""
+    , bookLanguageId = 1 
+    , bookId = 1
+    , poruka = ""
+    , results = []
+    , resultBook = Nothing
+    , errorMessage = Nothing
+    , loading = False
+    }
+```elm
+
+On služi za generisanje View-a; razne interakcije klijenta sa view-om uzrokuju slanje poruka, koje su prvobitno definisane kao tip Msg.
+Te poruke se prosljeđuju funkciji update koja u zavisnosti od poruka update-uje polazni podel.
+Takođe, poruke tipa Msg može generisati dobijanje odgovora od servera, pa i na njih adekvatno reaguje update funkcija.
+
+![Elm Arhitektura, slika 1](https://github.com/suncanjenamesecini/FUNKCIONALNO-PROJEKAT/blob/main/slike/elm-architecture1.jpg?raw=true)
+
+
+
+![Elm Arhitektura, slika 2](https://github.com/suncanjenamesecini/FUNKCIONALNO-PROJEKAT/blob/main/slike/elm-architecture2.jpg?raw=true)
+
+Primjer jedne od Update funkcija:
 
 ```elm
 updateAddBook : Model -> (Model, Cmd Msg)
 updateAddBook model =
     ( { model | loading = True }, postBooks model ) 
 ```
+
+### [Paket za UI: elm-ui](https://package.elm-lang.org/packages/mdgriffith/elm-ui/latest/)
+
+Ovaj paket omogućava jednostavnije stilizovanje, planiranje i raspoređivanje elemenata u prikazu.
+Neke od osobina, prema autorima:
+
+> The high level goal of this library is to be a **design toolkit** that draws inspiration from the domains of design, layout, and typography, as opposed to drawing from the ideas as implemented in CSS and HTML.
+>
+> This means:
+>
+>  - Writing and designing your layout and view should be as **simple and as fun** as possible.
+>  - Many layout errors (like you'd run into using CSS) **are just not possible to write** in the first place!
+>  - Everything should just **run fast**.
+>  - **Layout and style are explicit and easy to modify.** CSS and HTML as tools for a layout language are hard to modify because there's no central place that represents your layout. You're generally forced to bounce back and forth between multiple definitions in multiple files in order to adjust layout, even though it's probably the most common thing you'll do.
+
+
+### [Paket za slanje zahtjeva:http ](https://package.elm-lang.org/packages/elm/http/latest/Http#expectStringResponse)
+
+Primjer funkcije u našem kodu gdje se šalje GET zahtjev:
+
+```elm
+cmdSearchAll : Cmd Msg
+cmdSearchAll=
+    Http.get
+        { 
+          url = "http://localhost:8080/books/sve"
+        , expect = Http.expectJson MsgGotResults decodeItems
+        }
+```
+
+Primjer funkcije za slanje POST zahtjeva:
+
+```elm
+postBooks : Model -> Cmd Msg
+postBooks model =
+  Http.post
+    { url = "http://localhost:8080/books"
+    , body = jsonBody (encode model)
+    , expect = Http.expectWhatever MsgSuccesfulPost
+    }
+```
+
+### [Paket za enkodiranje i dekodiranje JSONa: json ](https://package.elm-lang.org/packages/elm/json/latest/)
+
+Ovaj paket omogućava pretvaranje JSON objekata koji se dobiju u http odgovoru u odgovarajuće Elm-tipove, i obrnuto.
+Tip knjiga iz aplikacije:
+
+```elm
+type alias Book =
+    { title : String
+    , thumbnail : Maybe String
+    , link : String
+    , pages : Maybe Int
+    , publisher : Maybe String
+    }
+```
+
+Primjer funkcije za dekodiranje JSON-a u tip Book:
+
+```elm
+decodeItem : JD.Decoder Book
+decodeItem =
+    JD.map5 Book
+        (JD.field "title" JD.string)
+        (JD.maybe (JD.field "thumbnail" JD.string))
+        (JD.field "link" JD.string)
+        (JD.maybe (JD.field "pages" JD.int))
+        (JD.maybe (JD.field "publisher" JD.string))
+```
+
+Primjer funkcije za enkodiranje tipa Book u JSON:
+
+```elm
+encode : Model -> JE.Value
+encode model =
+  JE.object
+    [ ("title", JE.string model.bookTitle)
+    , ("thumbnail", JE.string model.bookThumbnail)
+    , ("pages", JE.int model.bookPages)                            
+    , ("link", JE.string model.bookLink)
+    , ("publisher", JE.string model.bookPublisher)
+    , ("languageId", JE.int model.bookLanguageId)                                
+    ] 
+```
+
+### [Paket crtanje i prikaz Scalable vector graphics (SVG): svg ](https://package.elm-lang.org/packages/elm/svg/latest/)
 
 
 ## Pisanje dokumentacije
@@ -389,4 +530,4 @@ Za pretvaranje .md fajla u PDF je korišćena ekstenzija u VSCode editoru pod na
 
 ## Kod aplikacije
 
-I za kraj, link na kojem se nalazi kod aplikacije na github-u: [https://github.com/suncanjenamesecini/FUNKCIONALNO-PROJEKAT](https://github.com/suncanjenamesecini/FUNKCIONALNO-PROJEKAT).
+I za kraj, link ka repozitorijumu sa kodom aplikacije na github-u: [https://github.com/suncanjenamesecini/FUNKCIONALNO-PROJEKAT](https://github.com/suncanjenamesecini/FUNKCIONALNO-PROJEKAT).
